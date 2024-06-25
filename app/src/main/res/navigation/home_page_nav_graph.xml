@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_page_nav_graph"
+    app:startDestination="@id/homePageFragment">
+
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.homepage.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_allMovieInCollectionFragment"
+            app:destination="@id/allMovieInCollectionFragment"
+            app:popUpTo="@id/home_page_nav_graph"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/allMovieInCollectionFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.homepage.AllMovieInCollectionFragment"
+        android:label="fragment_all_movie_in_collection"
+        tools:layout="@layout/fragment_all_movie_in_collection" >
+        <action
+            android:id="@+id/action_allMovieInCollectionFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment"
+            app:popUpTo="@id/homePageFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

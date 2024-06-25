@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="111dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView_background"
+        android:layout_width="111dp"
+        android:layout_height="156dp"
+        android:src="@drawable/film_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_rating_film"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="6dp"
+        android:src="@drawable/blue_rating_film"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_rating_film"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_rating_film"
+        app:layout_constraintStart_toStartOf="@+id/imageView_rating_film"
+        app:layout_constraintTop_toTopOf="@+id/imageView_rating_film"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/textView_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#272727"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_background"
+        tools:text="Близкие" />
+
+    <TextView
+        android:id="@+id/textView_genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#838390"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_name"
+        tools:text="драма" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

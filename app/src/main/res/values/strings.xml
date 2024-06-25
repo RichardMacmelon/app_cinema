@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SkillCinema</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="skip">Пропустить</string>
+    <string name="text_first_onboarding">Узнавай \nо премьерах</string>
+    <string name="text_second_onboarding">Создавай \nколлекции</string>
+    <string name="text_third_onboarding">Делись \nс друзьями</string>
+    <string name="all">Все</string>
+    <string name="premieres">Премьеры</string>
+    <string name="top_250">Топ - 250</string>
+    <string name="popular">Популярное</string>
+    <string name="vampire">Вампиры</string>
+    <string name="Family">Семья</string>
+</resources>
