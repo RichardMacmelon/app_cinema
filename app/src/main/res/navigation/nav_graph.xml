@@ -9,7 +9,7 @@
         android:id="@+id/viewPagerFragment"
         android:name="com.example.skillcinema.presentation.onBoarding.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" >
+        tools:layout="@layout/fragment_view_pager">
         <action
             android:id="@+id/action_viewPagerFragment_to_viewPagerTabBarFragment"
             app:destination="@id/viewPagerTabBarFragment"
@@ -22,5 +22,145 @@
         android:id="@+id/viewPagerTabBarFragment"
         android:name="com.example.skillcinema.presentation.tabBar.ViewPagerTabBarFragment"
         android:label="fragment_view_pager_tab_bar"
-        tools:layout="@layout/fragment_view_pager_tab_bar" />
+        tools:layout="@layout/fragment_view_pager_tab_bar">
+        <action
+            android:id="@+id/action_viewPagerTabBarFragment_to_allMovieInCollectionFragment"
+            app:destination="@id/allMovieInCollectionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/viewPagerTabBarFragment" />
+        <action
+            android:id="@+id/action_viewPagerTabBarFragment_to_filmPageFragment"
+            app:destination="@id/filmPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/viewPagerTabBarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allMovieInCollectionFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.AllMoviePage.AllMovieInCollectionFragment"
+        android:label="fragment_all_movie_in_collection"
+        tools:layout="@layout/fragment_all_movie_in_collection">
+        <action
+            android:id="@+id/action_allMovieInCollectionFragment_to_filmPageFragment"
+            app:destination="@id/filmPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/allMovieInCollectionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmPageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.filmpage.FilmPageFragment"
+        android:label="fragment_film_page"
+        tools:layout="@layout/fragment_film_page">
+        <action
+            android:id="@+id/action_filmPageFragment_self"
+            app:destination="@id/filmPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/filmPageFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_filmPageFragment_to_allPeopleInPageFragment"
+            app:destination="@id/allPeopleInPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/filmPageFragment" />
+        <action
+            android:id="@+id/action_filmPageFragment_to_galleryPageFragment"
+            app:destination="@id/galleryPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/filmPageFragment" />
+        <action
+            android:id="@+id/action_filmPageFragment_to_similarMovieFragment"
+            app:destination="@id/similarMovieFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/filmPageFragment" />
+        <action
+            android:id="@+id/action_filmPageFragment_to_actorPageFragment"
+            app:destination="@id/actorPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/filmPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/allPeopleInPageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.allPeopleInPage.AllPeopleInPageFragment"
+        android:label="fragment_all_people_in_page"
+        tools:layout="@layout/fragment_all_people_in_page">
+
+        <action
+            android:id="@+id/action_allPeopleInPageFragment_to_actorPageFragment2"
+            app:destination="@id/actorPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/allPeopleInPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryPageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.galleryPage.GalleryPageFragment"
+        android:label="fragment_gallery_page"
+        tools:layout="@layout/fragment_gallery_page" />
+    <fragment
+        android:id="@+id/similarMovieFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.similarMoviePage.SimilarMovieFragment"
+        android:label="fragment_similar_movie"
+        tools:layout="@layout/fragment_similar_movie">
+        <action
+            android:id="@+id/action_similarMovieFragment_to_filmPageFragment"
+            app:destination="@id/filmPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/similarMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actorPageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.actorPage.ActorPageFragment"
+        android:label="fragment_actor_page"
+        tools:layout="@layout/fragment_actor_page">
+        <action
+            android:id="@+id/action_actorPageFragment_to_filmographyPageFragment"
+            app:destination="@id/filmographyPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/actorPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filmographyPageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.filmographyPage.FilmographyPageFragment"
+        android:label="fragment_filmography_page"
+        tools:layout="@layout/fragment_filmography_page" >
+        <action
+            android:id="@+id/action_filmographyPageFragment_to_filmPageFragment"
+            app:destination="@id/filmPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/filmographyPageFragment"/>
+    </fragment>
 </navigation>

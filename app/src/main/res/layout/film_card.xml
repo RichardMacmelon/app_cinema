@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="111dp"
+    android:layout_width="116dp"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -46,7 +46,7 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_background"
-        tools:text="Близкие" />
+        tools:text="@string/example_film_name" />
 
     <TextView
         android:id="@+id/textView_genre"

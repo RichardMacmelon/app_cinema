@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.tabBar.actorPage.ActorPageFragment">
+
+    <View
+        android:id="@+id/button_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_button_back"
+        app:layout_constraintBottom_toBottomOf="@+id/button_back"
+        app:layout_constraintEnd_toEndOf="@+id/button_back"
+        app:layout_constraintStart_toStartOf="@+id/button_back"
+        app:layout_constraintTop_toTopOf="@+id/button_back" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/title_page_fimale" />
+
+    <ImageView
+        android:id="@+id/imageView_photoActor"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_back" />
+
+    <TextView
+        android:id="@+id/textView_name_actor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_photoActor"
+        tools:text="@string/example_actor_title" />
+
+    <TextView
+        android:id="@+id/textView_job_actor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_name_actor"
+        tools:text="@string/example_movie_role" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="@dimen/margin_left_right"-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        android:text="@string/the_best"-->
+    <!--        android:textSize="20sp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/imageView_photoActor" />-->
+
+    <!--    <ImageButton-->
+    <!--        android:id="@+id/textViewSkip"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginEnd="@dimen/margin_left_right"-->
+    <!--        android:layout_marginBottom="11dp"-->
+    <!--        android:background="@drawable/button_all"-->
+    <!--        android:text="@string/all"-->
+    <!--        android:textSize="14sp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textView" />-->
+
+    <!--    <androidx.recyclerview.widget.RecyclerView-->
+    <!--        android:id="@+id/recyclerView"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        android:padding="26dp"-->
+    <!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/textView"-->
+    <!--        tools:listitem="@layout/film_card" />-->
+
+    <TextView
+        android:id="@+id/textViewFilmography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="20dp"
+        android:text="@string/filmography"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_job_actor" />
+
+    <ImageButton
+        android:id="@+id/imageButton_all_film"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_left_right"
+        android:background="@drawable/to_the_list_button"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewFilmography"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textViewFilmography" />
+
+    <TextView
+        android:id="@+id/textViewSumFilmography"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFilmography"
+        tools:text="@string/example_title_sum_movie" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

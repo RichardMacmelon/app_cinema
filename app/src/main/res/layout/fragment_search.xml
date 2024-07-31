@@ -6,14 +6,90 @@
     android:layout_height="match_parent"
     tools:context=".presentation.tabBar.search.SearchFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SearchFragment"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imgViewBackgroundSearch"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="@dimen/margin_left_right"
+        android:layout_marginEnd="@dimen/margin_left_right"
+        android:background="@drawable/search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgViewSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/search_button"
+        android:backgroundTint="#838390"
+        app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintStart_toStartOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/filter_button"
+        app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintEnd_toEndOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="18dp"
+        android:src="@drawable/rectangle"
+        app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
+
+    <EditText
+        android:keyboardNavigationCluster="true"
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:cursorVisible="true"
+        android:hint="@string/hint_in_search"
+        android:inputType="textWebEmailAddress"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintEnd_toStartOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/imgViewSearch"
+        app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewBackgroundSearch">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_left_right"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:listitem="@layout/film_card_in_search" />
+
+        <TextView
+            android:id="@+id/textViewError"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/margin_left_right"
+            android:text="@string/text_error_in_search"
+            android:textSize="16sp"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

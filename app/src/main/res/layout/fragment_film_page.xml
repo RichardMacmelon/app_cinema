@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.tabBar.filmpage.FilmPageFragment">
+
+    <View
+        android:id="@+id/button_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_button_back"
+        app:layout_constraintBottom_toBottomOf="@+id/button_back"
+        app:layout_constraintEnd_toEndOf="@+id/button_back"
+        app:layout_constraintStart_toStartOf="@+id/button_back"
+        app:layout_constraintTop_toTopOf="@+id/button_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_back">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewFilm_img"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            
+            <ImageButton
+                android:id="@+id/imageButton_skip"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_skip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+
+            <ImageButton
+                android:id="@+id/imageButton_notes"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_notes"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton_skip"
+                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+
+            <ImageButton
+                android:id="@+id/imageButton_likes"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_like"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton_notes"
+                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+
+            <ImageButton
+                android:id="@+id/imageButton_share"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_share"
+                app:layout_constraintStart_toEndOf="@+id/imageButton_skip"
+                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+
+            <ImageView
+                android:id="@+id/imageButton_more"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/button_more_options"
+                app:layout_constraintStart_toEndOf="@+id/imageButton_share"
+                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+
+            <TextView
+                android:id="@+id/textViewInfoMovie"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#B5B5C9"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewFilm_img"
+                tools:text="@string/example_title_movie" />
+
+            <ImageView
+                android:id="@+id/imageView_logoUrl"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewFilm_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_shortDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="@dimen/margin_left_right"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton_skip"
+                tools:text="@string/short_description_movie_example" />
+
+            <TextView
+                android:id="@+id/textView_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:padding="@dimen/margin_left_right"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_shortDescription"
+                tools:text="@string/description_movie_example" />
+
+            <TextView
+                android:id="@+id/textView_title_actor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_left_right"
+                android:text="@string/the_film_was_shot"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_description" />
+
+
+            <View
+                android:id="@+id/button_view_all_actor"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_description" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_button_back"
+                android:backgroundTint="@color/blue"
+                android:rotation="180"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_actor"
+                app:layout_constraintEnd_toEndOf="@+id/button_view_all_actor"
+                app:layout_constraintStart_toStartOf="@+id/button_view_all_actor"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_actor" />
+
+            <TextView
+                android:id="@+id/textView_counter_actor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_actor"
+                app:layout_constraintEnd_toStartOf="@+id/button_view_all_actor"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_actor"
+                tools:text="@string/quantity" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/people_card"
+                android:id="@+id/recyclerView_actor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="26dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_title_actor"
+                app:spanCount="4" />
+
+            <TextView
+                android:id="@+id/textView_title_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_left_right"
+                android:text="@string/we_were_working_on_the_film"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerView_actor" />
+
+            <View
+                android:id="@+id/button_view_all_job"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_actor" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_button_back"
+                android:backgroundTint="@color/blue"
+                android:rotation="180"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_job"
+                app:layout_constraintEnd_toEndOf="@+id/button_view_all_job"
+                app:layout_constraintStart_toStartOf="@+id/button_view_all_job"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_job" />
+
+            <TextView
+                android:id="@+id/textView_counter_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_job"
+                app:layout_constraintEnd_toStartOf="@+id/button_view_all_job"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_job"
+                tools:text="@string/quantity" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_left_right"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_title_job"
+                app:spanCount="2" />
+
+            <TextView
+                android:id="@+id/textView_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_left_right"
+                android:text="@string/gallery"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_job" />
+
+            <View
+                android:id="@+id/button_view_all_gallery"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_job" />
+
+            <ImageView
+                android:id="@+id/imageViewGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_button_back"
+                android:backgroundTint="@color/blue"
+                android:rotation="180"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_gallery"
+                app:layout_constraintEnd_toEndOf="@+id/button_view_all_gallery"
+                app:layout_constraintStart_toStartOf="@+id/button_view_all_gallery"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_gallery" />
+
+            <TextView
+                android:id="@+id/textView_counter_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_gallery"
+                app:layout_constraintEnd_toStartOf="@+id/button_view_all_gallery"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_gallery"
+                tools:text="@string/quantity" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/photo_card"
+                android:id="@+id/recyclerView_gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_left_right"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_gallery" />
+
+            <TextView
+                android:id="@+id/textView_other_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_left_right"
+                android:text="@string/similar_films"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_gallery" />
+
+            <View
+                android:id="@+id/button_view_all_similar_movie"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_gallery" />
+
+            <ImageView
+                android:id="@+id/imageViewSimilar_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/img_button_back"
+                android:backgroundTint="@color/blue"
+                android:rotation="180"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_similar_movie"
+                app:layout_constraintEnd_toEndOf="@+id/button_view_all_similar_movie"
+                app:layout_constraintStart_toStartOf="@+id/button_view_all_similar_movie"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_similar_movie" />
+
+            <TextView
+                android:id="@+id/textView_counter_similar_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_similar_movie"
+                app:layout_constraintEnd_toStartOf="@+id/button_view_all_similar_movie"
+                app:layout_constraintTop_toTopOf="@+id/button_view_all_similar_movie"
+                tools:text="@string/quantity" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_similar_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/margin_left_right"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_counter_similar_movie"
+                tools:listitem="@layout/film_card" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

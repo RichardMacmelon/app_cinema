@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.example.skillcinema.R
+import com.example.skillcinema.data.EntityItemsDto
+import com.example.skillcinema.databinding.FragmentFilmPageBinding
 import com.example.skillcinema.databinding.FragmentHomePageBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -22,11 +25,11 @@ class HomePageFragment : Fragment() {
     private var _binding: FragmentHomePageBinding? = null
     private val binding get() = _binding!!
 
-    private val moviePremieresAdapter = MyPremieresAdapter()
-    private val movieTop250Adapter = MyPremieresAdapter()
-    private val moviePopularAdapter = MyPremieresAdapter()
-    private val movieVampireAdapter = MyPremieresAdapter()
-    private val movieFamilyAdapter = MyPremieresAdapter()
+    private val moviePremieresAdapter = MyPremieresAdapter { id ->  onItemClick(id) }
+    private val movieTop250Adapter = MyPremieresAdapter { id ->  onItemClick(id) }
+    private val moviePopularAdapter = MyPremieresAdapter { id ->  onItemClick(id) }
+    private val movieVampireAdapter = MyPremieresAdapter { id ->  onItemClick(id) }
+    private val movieFamilyAdapter = MyPremieresAdapter{ id ->  onItemClick(id) }
 
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
@@ -45,26 +48,26 @@ class HomePageFragment : Fragment() {
 
         val contactAdapterPremieres =
             ConcatAdapter(moviePremieresAdapter, MyButtonViewAllAdapter {
-                 onItemClick()
+                viewFilmAll(1)
             })
         val contactAdapterTop250 =
             ConcatAdapter(movieTop250Adapter, MyButtonViewAllAdapter {
-                 onItemClick()
+                viewFilmAll(2)
             })
         val contactAdapterPopular =
             ConcatAdapter(moviePopularAdapter, MyButtonViewAllAdapter {
-                 onItemClick()
+                viewFilmAll(3)
             })
         val contactAdapterVampire =
             ConcatAdapter(movieVampireAdapter, MyButtonViewAllAdapter {
-                 onItemClick()
+                viewFilmAll(4)
             })
         val contactAdapterFamily =
             ConcatAdapter(movieFamilyAdapter, MyButtonViewAllAdapter {
-                onItemClick()
+                viewFilmAll(5)
             })
 
-        viewModel.moviePremiers.onEach {
+        viewModel.popularSeries.onEach {
             moviePremieresAdapter.setData(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
@@ -93,9 +96,98 @@ class HomePageFragment : Fragment() {
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.recyclerViewTopFamily.adapter = contactAdapterFamily
+
+        binding.textViewSkip.setOnClickListener {
+            viewFilmAll(1)
+        }
+
+        binding.textViewSkipTop250.setOnClickListener {
+            viewFilmAll(2)
+        }
+
+        binding.textViewSkipPopular.setOnClickListener {
+            viewFilmAll(3)
+        }
+
+        binding.textViewSkipVampire.setOnClickListener {
+            viewFilmAll(4)
+        }
+
+        binding.textViewSkipFamily.setOnClickListener {
+            viewFilmAll(5)
+        }
     }
 
-    private fun onItemClick() {
-        findNavController().navigate(R.id.action_homePageFragment_to_allMovieInCollectionFragment)
+    private fun viewFilmAll(keyBottom: Int) {
+        val argument = Bundle()
+        when (keyBottom) {
+            1 -> {
+                argument.apply {
+                    putString(ARGUMENT_KEY, getString(R.string.premieres))
+                    putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
+                }
+                findNavController().navigate(
+                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    argument
+                )
+            }
+
+            2 -> {
+                argument.apply {
+                    argument.putString(ARGUMENT_KEY, getString(R.string.top_250))
+                    putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
+                }
+                findNavController().navigate(
+                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    argument
+                )
+
+            }
+
+            3 -> {
+                argument.apply {
+                    putString(ARGUMENT_KEY, getString(R.string.popular))
+                    putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
+                }
+                findNavController().navigate(
+                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    argument
+                )
+            }
+
+            4 -> {
+                argument.apply {
+                    putString(ARGUMENT_KEY, getString(R.string.vampire))
+                    putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
+                }
+                findNavController().navigate(
+                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    argument
+                )
+            }
+
+            5 -> {
+                argument.apply {
+                    putString(ARGUMENT_KEY, getString(R.string.family))
+                    putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
+                }
+                findNavController().navigate(
+                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    argument
+                )
+            }
+
+        }
+    }
+
+    private fun onItemClick(item: EntityItemsDto) {
+        val argument = bundleOf(ARGUMENT_FILM_KEY to item.kinopoiskId)
+        findNavController().navigate(R.id.action_viewPagerTabBarFragment_to_filmPageFragment, argument)
+    }
+
+    companion object {
+        const val ARGUMENT_FILM_KEY = "ARGUMENT_FILM_KEY"
+        const val ARGUMENT_KEY = "ARGUMENT_KEY"
+        const val ARGUMENT_DOWNLOAD_KEY = "ARGUMENT_DOWNLOAD_KEY"
     }
 }

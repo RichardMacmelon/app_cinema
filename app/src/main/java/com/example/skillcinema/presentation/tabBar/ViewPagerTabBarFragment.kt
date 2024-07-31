@@ -46,6 +46,8 @@ class ViewPagerTabBarFragment : Fragment() {
             }
         })
 
+        binding.viewPager.isUserInputEnabled = false
+
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 binding.viewPager.currentItem = tab.position

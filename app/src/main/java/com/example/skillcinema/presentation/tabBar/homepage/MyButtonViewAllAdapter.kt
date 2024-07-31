@@ -7,7 +7,6 @@ import com.example.skillcinema.databinding.ButtonViewAllBinding
 
 class MyButtonViewAllAdapter(private val onClick:() -> Unit) : RecyclerView.Adapter<LoadButtonViewHolder>() {
 
-
     override fun getItemCount(): Int  = 1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoadButtonViewHolder {

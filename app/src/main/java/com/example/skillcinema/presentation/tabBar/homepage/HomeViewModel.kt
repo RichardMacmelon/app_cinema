@@ -3,26 +3,26 @@ package com.example.skillcinema.presentation.tabBar.homepage
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.skillcinema.data.EntityFilmDto
 import com.example.skillcinema.data.EntityItemsDto
 import com.example.skillcinema.domain.GetCollectionsUseCase
-import com.example.skillcinema.domain.GetFilmInfoUseCase
-import com.example.skillcinema.domain.GetPremieresUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val getPremieresUseCase: GetPremieresUseCase,
-    private val getFilmInfoUseCase: GetFilmInfoUseCase,
     private val getCollectionsUseCase: GetCollectionsUseCase
 ) : ViewModel() {
 
-    private var i = 1
-    private val _moviePremiers = MutableStateFlow<List<EntityItemsDto>>(emptyList())
-    val moviePremiers = _moviePremiers.asStateFlow()
+    private val _popularSeries = MutableStateFlow<List<EntityItemsDto>>(emptyList())
+    val popularSeries = _popularSeries.asStateFlow()
 
     private val _movieTop250Collections = MutableStateFlow<List<EntityItemsDto>>(emptyList())
     val movieTop250Collections = _movieTop250Collections.asStateFlow()
@@ -36,40 +36,23 @@ class HomeViewModel @Inject constructor(
     private val _movieFamilyCollections = MutableStateFlow<List<EntityItemsDto>>(emptyList())
     val movieFamilyCollections = _movieFamilyCollections.asStateFlow()
 
-    private val _infoFilm = MutableStateFlow<List<EntityFilmDto>>(emptyList())
-    val infoFilm = _infoFilm.asStateFlow()
-
-//    val pagedMovie : Flow<PagingData<EntityItemsDto>> = Pager(
-//        config = PagingConfig(pageSize = 1),
-//        initialKey = null,
-//        pagingSourceFactory = { MyCollectionsPiginSource(getCollectionsUseCase) }
-//    ).flow.cachedIn(viewModelScope)
-
     init {
-        loadPremieres()
+        loadPopularSeries()
         loadCollectionsTop250()
         loadCollectionsPopular()
         loadCollectionsVampire()
         loadCollectionsFamily()
     }
 
-    private fun loadPremieres() {
+    private fun loadPopularSeries() {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
-                getPremieresUseCase.getPremieres(2024, "JUNE")
+                getCollectionsUseCase.getTop250Collections(POPULAR_SERIES, PAGE)
             }.fold(
                 onSuccess = {
-                    _moviePremiers.value = it
-                    // Работает, но тратит много запрсов
-                    //                    val listInfoFilm: MutableList<EntityFilmDto> =
-                    //                        emptyList<EntityFilmDto>().toMutableList()
-                    //                    for (i in 0 until it.size) {
-                    //                        val film = getFilmInfoUseCase.getInfoFilm(it.getOrNull(i)?.kinopoiskId)
-                    //                        listInfoFilm.add(film)
-                    //                        _infoFilm.value = listInfoFilm
-                    //                    }
+                    _popularSeries.value = it
                 },
-                onFailure = { Log.d("MovieList viewModel loadPremieres", it.message ?: "") }
+                onFailure = { Log.d("MovieList viewModel loadCollections", it.message ?: "") }
             )
         }
     }
@@ -81,7 +64,6 @@ class HomeViewModel @Inject constructor(
             }.fold(
                 onSuccess = {
                     _movieTop250Collections.value = it
-                    println(it)
                 },
                 onFailure = { Log.d("MovieList viewModel loadCollections", it.message ?: "") }
             )
@@ -95,7 +77,6 @@ class HomeViewModel @Inject constructor(
             }.fold(
                 onSuccess = {
                     _moviePopularCollections.value = it
-                    println(it)
                 },
                 onFailure = { Log.d("MovieList viewModel loadCollections", it.message ?: "") }
             )
@@ -109,7 +90,6 @@ class HomeViewModel @Inject constructor(
             }.fold(
                 onSuccess = {
                     _movieVampireCollections.value = it
-                    println(it)
                 },
                 onFailure = { Log.d("MovieList viewModel loadCollections", it.message ?: "") }
             )
@@ -123,7 +103,6 @@ class HomeViewModel @Inject constructor(
             }.fold(
                 onSuccess = {
                     _movieFamilyCollections.value = it
-                    println(it)
                 },
                 onFailure = { Log.d("MovieList viewModel loadCollections", it.message ?: "") }
             )
@@ -132,10 +111,11 @@ class HomeViewModel @Inject constructor(
 
     companion object {
         private const val PAGE = 1
-        private val TOP_250 = "TOP_250_MOVIES"
-        private val TOP_POPULAR_ALL = "TOP_POPULAR_ALL"
-        private val VAMPIRE_THEME = "VAMPIRE_THEME"
-        private val FAMILY = "FAMILY"
+        private const val POPULAR_SERIES = "POPULAR_SERIES"
+        private const val TOP_250 = "TOP_250_MOVIES"
+        private const val TOP_POPULAR_ALL = "TOP_POPULAR_ALL"
+        private const val VAMPIRE_THEME = "VAMPIRE_THEME"
+        private const val FAMILY = "FAMILY"
     }
 
 }

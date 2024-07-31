@@ -1,6 +1,5 @@
 package com.example.skillcinema.data
 
-import com.example.skillcinema.entity.EntityCollectionsMovies
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -22,27 +21,51 @@ object RetrofitService {
 
 interface SearchPremieresMovieApi {
 
-    @Headers("X-API-KEY: $API_KEY2")
-    @GET(value = "/api/v2.2/films/premieres")
-    suspend fun getPremieresMovie(
-        @Query("year") year: Int,
-        @Query("month") month: String
-    ): EntityCollectionsMoviesDto
-
-    @Headers("X-API-KEY: $API_KEY2")
+    @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v2.2/films/collections")
     suspend fun getCollectionsMovies(
         @Query("type") type: String,
         @Query("page") page: Int
     ) : EntityCollectionsMoviesDto
 
-    @Headers("X-API-KEY: $API_KEY2")
+    @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v2.2/films/{id}")
     suspend fun getInfoMovie(
         @Path("id") id: Int?
     ): EntityFilmDto
 
+    @Headers("X-API-KEY: $API_KEY1")
+    @GET(value = "/api/v2.2/films/{id}/similars")
+    suspend fun getSimilarMovies(
+        @Path("id") id: Int?
+    ) : EntitySimilarsFilmsDto
 
+    @Headers("X-API-KEY: $API_KEY1")
+    @GET(value = "/api/v1/staff")
+    suspend fun getActorForMovie(
+        @Query("filmId") filmId: Int
+    ) : List<EntityPeopleDto>
+
+    @Headers("X-API-KEY: $API_KEY1")
+    @GET(value = "/api/v2.2/films/{id}/images")
+    suspend fun getPhotoForMovie(
+        @Path("id") id: Int?,
+        @Query("type") type: String,
+        @Query("page") page: Int
+    ) : EntityPhotoForFilmDto
+
+    @Headers("X-API-KEY: $API_KEY1")
+    @GET(value = "/api/v1/staff/{id}")
+    suspend fun getInfoForPerson(
+        @Path("id") id: Int?
+    ) : EntityActorInfoDto
+
+    @Headers("X-API-KEY: $API_KEY1")
+    @GET(value = "/api/v2.1/films/search-by-keyword")
+    suspend fun getSearchMovie(
+        @Query("keyword") keyword: String,
+        @Query("page") page: Int
+    ) : EntitySearchMovieDto
 
     companion object {
         const val API_KEY1 = "e908af57-9ec8-446c-8ef8-b8943c611b96"

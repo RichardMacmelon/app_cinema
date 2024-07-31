@@ -12,16 +12,4 @@ class GetCollectionsUseCase @Inject constructor(
         return mainRepository.getMovieListCollections(type, page)
     }
 
-    suspend fun getTopPopularCollections(type: String, page: Int): List<EntityItemsDto> {
-        return mainRepository.getMovieListCollections(type, page)
-    }
-
-    suspend fun getVampireThemeCollections(type: String, page: Int) : List<EntityItemsDto> {
-        return mainRepository.getMovieListCollections(type, page)
-    }
-
-    suspend fun getFamilyCollections(type: String, page: Int) : List<EntityItemsDto> {
-        return mainRepository.getMovieListCollections(type, page)
-    }
-
 }
