@@ -1,4 +1,4 @@
-package com.example.skillcinema.presentation.tabBar.search
+package com.example.skillcinema.presentation.tabBar.search.searchPage
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

@@ -58,7 +58,7 @@
         android:background="@android:color/transparent"
         android:cursorVisible="true"
         android:hint="@string/hint_in_search"
-        android:inputType="textWebEmailAddress"
+        android:inputType="textWebEditText"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
         app:layout_constraintEnd_toStartOf="@+id/imageView8"

@@ -39,6 +39,14 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/viewPagerTabBarFragment" />
+        <action
+            android:id="@+id/action_viewPagerTabBarFragment_to_searchFilterFragment"
+            app:destination="@id/searchFilterFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/viewPagerTabBarFragment"/>
     </fragment>
     <fragment
         android:id="@+id/allMovieInCollectionFragment"
@@ -163,4 +171,9 @@
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/filmographyPageFragment"/>
     </fragment>
+    <fragment
+        android:id="@+id/searchFilterFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.search.searchFilterPage.SearchFilterFragment"
+        android:label="fragment_search_filter"
+        tools:layout="@layout/fragment_search_filter" />
 </navigation>

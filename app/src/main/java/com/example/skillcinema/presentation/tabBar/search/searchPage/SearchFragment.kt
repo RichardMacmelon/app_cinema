@@ -1,4 +1,4 @@
-package com.example.skillcinema.presentation.tabBar.search
+package com.example.skillcinema.presentation.tabBar.search.searchPage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -44,9 +44,12 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.imageButton.setOnClickListener {
+            findNavController().navigate(R.id.action_viewPagerTabBarFragment_to_searchFilterFragment)
+        }
 
         binding.search.doOnTextChanged { text, _, _, _ ->
             viewModel.searchMovie(text.toString())

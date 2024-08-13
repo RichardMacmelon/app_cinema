@@ -1,4 +1,4 @@
-package com.example.skillcinema.presentation.tabBar.search
+package com.example.skillcinema.presentation.tabBar.search.searchPage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
