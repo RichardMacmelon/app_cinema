@@ -3,65 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/viewPagerFragment">
+    app:startDestination="@id/homePageFragment">
 
-    <fragment
-        android:id="@+id/viewPagerFragment"
-        android:name="com.example.skillcinema.presentation.onBoarding.ViewPagerFragment"
-        android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager">
-        <action
-            android:id="@+id/action_viewPagerFragment_to_viewPagerTabBarFragment"
-            app:destination="@id/viewPagerTabBarFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/viewPagerFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/viewPagerTabBarFragment"
-        android:name="com.example.skillcinema.presentation.tabBar.ViewPagerTabBarFragment"
-        android:label="fragment_view_pager_tab_bar"
-        tools:layout="@layout/fragment_view_pager_tab_bar">
-        <action
-            android:id="@+id/action_viewPagerTabBarFragment_to_allMovieInCollectionFragment"
-            app:destination="@id/allMovieInCollectionFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/viewPagerTabBarFragment" />
-        <action
-            android:id="@+id/action_viewPagerTabBarFragment_to_filmPageFragment"
-            app:destination="@id/filmPageFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/viewPagerTabBarFragment" />
-        <action
-            android:id="@+id/action_viewPagerTabBarFragment_to_searchFilterFragment"
-            app:destination="@id/searchFilterFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/viewPagerTabBarFragment"/>
-    </fragment>
     <fragment
         android:id="@+id/allMovieInCollectionFragment"
         android:name="com.example.skillcinema.presentation.tabBar.AllMoviePage.AllMovieInCollectionFragment"
         android:label="fragment_all_movie_in_collection"
-        tools:layout="@layout/fragment_all_movie_in_collection">
-        <action
-            android:id="@+id/action_allMovieInCollectionFragment_to_filmPageFragment"
-            app:destination="@id/filmPageFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/allMovieInCollectionFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_all_movie_in_collection"/>
     <fragment
         android:id="@+id/filmPageFragment"
         android:name="com.example.skillcinema.presentation.tabBar.filmpage.FilmPageFragment"
@@ -161,7 +109,7 @@
         android:id="@+id/filmographyPageFragment"
         android:name="com.example.skillcinema.presentation.tabBar.filmographyPage.FilmographyPageFragment"
         android:label="fragment_filmography_page"
-        tools:layout="@layout/fragment_filmography_page" >
+        tools:layout="@layout/fragment_filmography_page">
         <action
             android:id="@+id/action_filmographyPageFragment_to_filmPageFragment"
             app:destination="@id/filmPageFragment"
@@ -169,11 +117,91 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/filmographyPageFragment"/>
+            app:popUpTo="@id/filmographyPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFilterFragment"
         android:name="com.example.skillcinema.presentation.tabBar.search.searchFilterPage.SearchFilterFragment"
         android:label="fragment_search_filter"
-        tools:layout="@layout/fragment_search_filter" />
+        tools:layout="@layout/fragment_search_filter" >
+        <action
+            android:id="@+id/action_searchFilterFragment_to_searchFilterCountryFragment"
+            app:destination="@id/searchFilterCountryFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/searchFilterFragment" />
+        <action
+            android:id="@+id/action_searchFilterFragment_to_searchFilterGenreFragment"
+            app:destination="@id/searchFilterGenreFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/searchFilterFragment" />
+        <action
+            android:id="@+id/action_searchFilterFragment_to_searchFilterYearFragment"
+            app:destination="@id/searchFilterYearFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/searchFilterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.homepage.HomePageFragment"
+        android:label="fragment_home_page"
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePageFragment_to_allMovieInCollectionFragment"
+            app:destination="@id/allMovieInCollectionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/homePageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.search.searchPage.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchFilterFragment"
+            app:destination="@id/searchFilterFragment"
+            app:popUpTo="@id/searchFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <action
+        android:id="@+id/action_global_filmPageFragment"
+        app:destination="@id/filmPageFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out"/>
+    <fragment
+        android:id="@+id/searchFilterCountryFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.search.searchFilterCountryPage.SearchFilterCountryFragment"
+        android:label="fragment_search_filter_genre_country"
+        tools:layout="@layout/fragment_search_filter_country" />
+    <fragment
+        android:id="@+id/searchFilterGenreFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.search.searchFilterGenrePage.SearchFilterGenreFragment"
+        android:label="fragment_search_filter_genre"
+        tools:layout="@layout/fragment_search_filter_genre" />
+    <fragment
+        android:id="@+id/searchFilterYearFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.search.SearchFilterYearPage.SearchFilterYearFragment"
+        android:label="fragment_search_filter_year"
+        tools:layout="@layout/fragment_search_filter_year" />
 </navigation>

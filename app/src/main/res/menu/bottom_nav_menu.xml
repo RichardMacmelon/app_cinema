@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/homePageFragment"
         android:icon="@drawable/home_button"
         android:title="@string/home"
         />
 
     <item
-        android:id="@+id/navigation_search"
+        android:id="@+id/searchFragment"
         android:icon="@drawable/search_button"
         android:title="@string/search" />
 
     <item
-        android:id="@+id/navigation_user"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/profile_button"
         android:title="@string/user" />
 

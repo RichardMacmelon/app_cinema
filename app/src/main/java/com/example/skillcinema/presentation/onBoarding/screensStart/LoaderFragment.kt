@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.skillcinema.R
 import com.example.skillcinema.presentation.MainActivity
-import com.example.skillcinema.presentation.SecondActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -21,8 +21,9 @@ class LoaderFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Handler().postDelayed({
-            val intent = Intent(activity, SecondActivity::class.java)
-            activity?.startActivity(intent)
+//            findNavController().navigate(R.id.action_viewPagerFragment_to_viewPagerTabBarFragment)
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
             activity?.finish()
         }, 3000)
         return inflater.inflate(R.layout.fragment_loader, container, false)

@@ -62,7 +62,7 @@ class AllMovieInCollectionFragment : Fragment() {
 
     private fun onItemClick(item: EntityItemsDto) {
         val argument = bundleOf(HomePageFragment.ARGUMENT_FILM_KEY to item.kinopoiskId)
-        findNavController().navigate(R.id.action_allMovieInCollectionFragment_to_filmPageFragment, argument)
+        findNavController().navigate(R.id.action_global_filmPageFragment, argument)
     }
 
 }

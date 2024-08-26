@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.tabBar.search.SearchFragment">
+    tools:context=".presentation.tabBar.search.searchPage.SearchFragment">
 
     <ImageView
         android:id="@+id/imgViewBackgroundSearch"
@@ -50,7 +50,6 @@
         app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
 
     <EditText
-        android:keyboardNavigationCluster="true"
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -58,7 +57,9 @@
         android:background="@android:color/transparent"
         android:cursorVisible="true"
         android:hint="@string/hint_in_search"
+        android:imeOptions="actionSearch"
         android:inputType="textWebEditText"
+        android:keyboardNavigationCluster="false"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
         app:layout_constraintEnd_toStartOf="@+id/imageView8"

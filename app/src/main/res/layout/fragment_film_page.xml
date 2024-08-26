@@ -24,14 +24,22 @@
         app:layout_constraintStart_toStartOf="@+id/button_back"
         app:layout_constraintTop_toTopOf="@+id/button_back" />
 
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/component_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_back">
+        app:layout_constraintTop_toBottomOf="@+id/imageView11">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -151,7 +159,7 @@
                 android:id="@+id/button_view_all_actor"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/margin_left_right"
+                android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_description" />
 

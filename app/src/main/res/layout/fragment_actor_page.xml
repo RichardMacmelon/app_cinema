@@ -36,82 +36,55 @@
         tools:text="@string/title_page_fimale" />
 
     <ImageView
-        android:id="@+id/imageView_photoActor"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/imageView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/component_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_back" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView_photoActor"
+        android:layout_width="146dp"
+        android:layout_height="201dp"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     <TextView
         android:id="@+id/textView_name_actor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_photoActor"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/imageView_photoActor"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11"
         tools:text="@string/example_actor_title" />
 
     <TextView
         android:id="@+id/textView_job_actor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView_photoActor"
         app:layout_constraintTop_toBottomOf="@+id/textView_name_actor"
         tools:text="@string/example_movie_role" />
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/textView"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="@dimen/margin_left_right"-->
-    <!--        android:layout_marginTop="20dp"-->
-    <!--        android:text="@string/the_best"-->
-    <!--        android:textSize="20sp"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/imageView_photoActor" />-->
-
-    <!--    <ImageButton-->
-    <!--        android:id="@+id/textViewSkip"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginEnd="@dimen/margin_left_right"-->
-    <!--        android:layout_marginBottom="11dp"-->
-    <!--        android:background="@drawable/button_all"-->
-    <!--        android:text="@string/all"-->
-    <!--        android:textSize="14sp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/textView"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/textView" />-->
-
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/recyclerView"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:padding="26dp"-->
-    <!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/textView"-->
-    <!--        tools:listitem="@layout/film_card" />-->
 
     <TextView
         android:id="@+id/textViewFilmography"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_left_right"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="36dp"
         android:text="@string/filmography"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_job_actor" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView_photoActor" />
 
     <ImageButton
         android:id="@+id/imageButton_all_film"

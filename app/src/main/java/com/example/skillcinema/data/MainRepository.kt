@@ -32,4 +32,8 @@ class MainRepository @Inject constructor() {
     suspend fun getSearchMovie(keyword: String, page: Int) : EntitySearchMovieDto {
         return RetrofitService.searchPremieresMovieApi.getSearchMovie(keyword, page)
     }
+
+    suspend fun getIdForCountryAndGenre() : EntityIdCountryAndGenresDto {
+        return RetrofitService.searchPremieresMovieApi.getIdForCountryAndGenre()
+    }
 }

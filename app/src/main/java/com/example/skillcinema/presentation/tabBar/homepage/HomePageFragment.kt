@@ -127,7 +127,7 @@ class HomePageFragment : Fragment() {
                     putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
                 }
                 findNavController().navigate(
-                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    R.id.action_homePageFragment_to_allMovieInCollectionFragment,
                     argument
                 )
             }
@@ -138,7 +138,7 @@ class HomePageFragment : Fragment() {
                     putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
                 }
                 findNavController().navigate(
-                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    R.id.action_homePageFragment_to_allMovieInCollectionFragment,
                     argument
                 )
 
@@ -150,7 +150,7 @@ class HomePageFragment : Fragment() {
                     putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
                 }
                 findNavController().navigate(
-                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    R.id.action_homePageFragment_to_allMovieInCollectionFragment,
                     argument
                 )
             }
@@ -161,7 +161,7 @@ class HomePageFragment : Fragment() {
                     putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
                 }
                 findNavController().navigate(
-                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    R.id.action_homePageFragment_to_allMovieInCollectionFragment,
                     argument
                 )
             }
@@ -172,7 +172,7 @@ class HomePageFragment : Fragment() {
                     putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
                 }
                 findNavController().navigate(
-                    R.id.action_viewPagerTabBarFragment_to_allMovieInCollectionFragment,
+                    R.id.action_homePageFragment_to_allMovieInCollectionFragment,
                     argument
                 )
             }
@@ -182,7 +182,7 @@ class HomePageFragment : Fragment() {
 
     private fun onItemClick(item: EntityItemsDto) {
         val argument = bundleOf(ARGUMENT_FILM_KEY to item.kinopoiskId)
-        findNavController().navigate(R.id.action_viewPagerTabBarFragment_to_filmPageFragment, argument)
+        findNavController().navigate(R.id.action_global_filmPageFragment, argument)
     }
 
     companion object {

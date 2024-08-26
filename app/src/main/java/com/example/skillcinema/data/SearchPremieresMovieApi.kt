@@ -67,6 +67,10 @@ interface SearchPremieresMovieApi {
         @Query("page") page: Int
     ) : EntitySearchMovieDto
 
+    @Headers("X-API-KEY: $API_KEY1")
+    @GET(value = "/api/v2.2/films/filters")
+    suspend fun getIdForCountryAndGenre() : EntityIdCountryAndGenresDto
+
     companion object {
         const val API_KEY1 = "e908af57-9ec8-446c-8ef8-b8943c611b96"
         const val API_KEY2 = "624f507c-2e3e-4006-acdf-d7953a504c61"
