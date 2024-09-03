@@ -1,5 +1,6 @@
 package com.example.skillcinema.presentation.tabBar.filmpage
 
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -36,6 +37,8 @@ class FilmPageFragment : Fragment() {
     private val workerMovieAdapter = MyPeopleCardAdapter { item -> viewActorPage(item) }
     private val photoMovieAdapter = MyPhotoMovieAdapter()
 
+    private lateinit var webUrl: String
+
     @Inject
     lateinit var filmPageViewModelFactory: FilmPageViewModelFactory
     private val viewModel: FilmPageViewModel by viewModels<FilmPageViewModel> { filmPageViewModelFactory }
@@ -52,7 +55,6 @@ class FilmPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val movieId: Int? = arguments?.getInt(ARGUMENT_FILM_KEY)
-        println(movieId)
 
         arguments?.let {
             viewModel.loadInfoMovie(movieId!!)
@@ -63,6 +65,28 @@ class FilmPageFragment : Fragment() {
 
         binding.buttonBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.imageButtonLikes.setOnClickListener {
+            it.isSelected = !it.isSelected
+        }
+
+        binding.imageButtonNotes.setOnClickListener {
+            it.isSelected = !it.isSelected
+        }
+
+        binding.imageButtonSkip.setOnClickListener {
+            it.isSelected = !it.isSelected
+        }
+
+        binding.imageButtonShare.setOnClickListener {
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, webUrl)
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
         }
 
         binding.buttonViewAllActor.setOnClickListener {
@@ -117,7 +141,6 @@ class FilmPageFragment : Fragment() {
                     binding.textViewOtherMovie.isGone = true
                     binding.textViewCounterSimilarMovie.isGone = true
                     binding.buttonViewAllSimilarMovie.isGone = true
-                    binding.imageViewSimilarMovie.isGone = true
                 } else {
                     binding.textViewCounterSimilarMovie.text = values.total.toString()
                     similarMovieAdapter.setData(values.items)
@@ -130,7 +153,6 @@ class FilmPageFragment : Fragment() {
             viewModel.photoMovie.collect { values ->
                 if (values.total == 0) {
                     binding.textViewGallery.isGone = true
-                    binding.imageViewGallery.isGone = true
                     binding.textViewCounterGallery.isGone = true
                     binding.buttonViewAllGallery.isGone = true
                 } else {
@@ -167,6 +189,8 @@ class FilmPageFragment : Fragment() {
             } else {
                 ratingKinopoisk = it.ratingKinopoisk.toString()
             }
+
+            webUrl = it.webUrl.toString()
 
             val name = it.nameRu ?: it.nameEn ?: ""
 
@@ -216,7 +240,6 @@ class FilmPageFragment : Fragment() {
                 binding.textViewDescription.text = it.description
             }
         }.launchIn(viewLifecycleOwner.lifecycleScope)
-
     }
 
     private fun viewSimilarFilm(item: EntityItemsSimilarsFilmsDto) {

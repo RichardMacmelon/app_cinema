@@ -29,11 +29,35 @@ class MainRepository @Inject constructor() {
         return RetrofitService.searchPremieresMovieApi.getInfoForPerson(id)
     }
 
-    suspend fun getSearchMovie(keyword: String, page: Int) : EntitySearchMovieDto {
+    suspend fun getSearchMovie(keyword: String, page: Int): EntitySearchMovieDto {
         return RetrofitService.searchPremieresMovieApi.getSearchMovie(keyword, page)
     }
 
-    suspend fun getIdForCountryAndGenre() : EntityIdCountryAndGenresDto {
+    suspend fun getIdForCountryAndGenre(): EntityIdCountryAndGenresDto {
         return RetrofitService.searchPremieresMovieApi.getIdForCountryAndGenre()
+    }
+
+    suspend fun getFilmUsingFilters(
+        countries: Int,
+        genres: Int,
+        order: String,
+        type: String,
+        ratingFrom: Int,
+        ratingTo: Int,
+        yearFrom: Int,
+        yearTo: Int,
+        page: Int
+    ): EntityMoviesForFiltersDto {
+        return RetrofitService.searchPremieresMovieApi.getFilmUsingFilters(
+            countries,
+            genres,
+            order,
+            type,
+            ratingFrom,
+            ratingTo,
+            yearFrom,
+            yearTo,
+            page
+        )
     }
 }

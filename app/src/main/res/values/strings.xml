@@ -78,5 +78,9 @@
     <string name="example_year_picker"><b>1888 - 2024</b></string>
     <string name="year_value"><b>2000</b></string>
     <string name="toast_in_search_year_fragment">Выберете год C и до ДО</string>
+    <string name="result"><b>Результат</b></string>
+    <string name="viewed"><b>Просмотрено</b></string>
+    <string name="collections"><b>Коллекции</b></string>
+    <string name="create_your_own_collection">Создать свою коллекцию</string>
 
 </resources>

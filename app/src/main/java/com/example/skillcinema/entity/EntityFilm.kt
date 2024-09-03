@@ -15,5 +15,5 @@ interface EntityFilm {
     val filmLength: Int?
     val description: String?
     val shortDescription: String?
-
+    val webUrl: String?
 }

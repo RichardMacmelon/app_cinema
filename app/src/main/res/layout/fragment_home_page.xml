@@ -37,7 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="@dimen/margin_left_right"
-            android:background="@drawable/button_all"
+            android:background="@drawable/ripple_effect_for_button"
+            android:src="@drawable/button_all"
             android:text="@string/all"
             android:textColor="@color/blue"
             android:textSize="14sp"
@@ -45,7 +46,6 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/film_card"
             android:id="@+id/recyclerView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +54,8 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:listitem="@layout/film_card" />
 
         <TextView
             android:id="@+id/textView1"
@@ -73,7 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="@dimen/margin_left_right"
-            android:background="@drawable/button_all"
+            android:background="@drawable/ripple_effect_for_button"
+            android:src="@drawable/button_all"
             android:text="@string/all"
             android:textColor="@color/blue"
             android:textSize="14sp"
@@ -81,7 +83,6 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/film_card"
             android:id="@+id/recyclerViewTop250"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +91,8 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView1" />
+            app:layout_constraintTop_toBottomOf="@+id/textView1"
+            tools:listitem="@layout/film_card" />
 
         <TextView
             android:id="@+id/textView2"
@@ -109,15 +111,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="@dimen/margin_left_right"
-            android:background="@drawable/button_all"
-            android:text="@string/all"
+            android:background="@drawable/ripple_effect_for_button"
+            android:src="@drawable/button_all"
             android:textColor="@color/blue"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewTop250" />
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/film_card"
             android:id="@+id/recyclerViewTopPopular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,7 +127,8 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:listitem="@layout/film_card" />
 
         <TextView
             android:id="@+id/textView3"
@@ -146,14 +148,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="@dimen/margin_left_right"
-            android:background="@drawable/button_all"
+            android:background="@drawable/ripple_effect_for_button"
+            android:src="@drawable/button_all"
             android:text="@string/all"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopPopular" />
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/film_card"
             android:id="@+id/recyclerViewTopVampire"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,7 +164,8 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:listitem="@layout/film_card" />
 
         <TextView
             android:id="@+id/textView4"
@@ -181,14 +184,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="@dimen/margin_left_right"
-            android:background="@drawable/button_all"
-            android:text="@string/all"
+            android:background="@drawable/ripple_effect_for_button"
+            android:src="@drawable/button_all"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopVampire" />
 
         <androidx.recyclerview.widget.RecyclerView
-            tools:listitem="@layout/film_card"
             android:id="@+id/recyclerViewTopFamily"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -198,7 +200,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:listitem="@layout/film_card" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

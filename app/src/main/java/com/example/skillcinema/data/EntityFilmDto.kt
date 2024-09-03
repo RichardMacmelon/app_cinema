@@ -19,5 +19,6 @@ data class EntityFilmDto(
     @Json(name = "genres") override val genres: List<EntityGenreDto>,
     @Json(name = "description") override val description: String?,
     @Json(name = "shortDescription") override val shortDescription: String?,
-    @Json(name = "posterUrl") override val posterUrl: String?
+    @Json(name = "posterUrl") override val posterUrl: String?,
+    @Json(name = "webUrl") override val webUrl: String?
 ) : EntityFilm

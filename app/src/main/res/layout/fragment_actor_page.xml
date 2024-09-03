@@ -12,6 +12,7 @@
         android:layout_height="24dp"
         android:layout_marginStart="@dimen/margin_left_right"
         android:layout_marginTop="16dp"
+        android:background="@drawable/ripple_effect_for_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,18 +56,18 @@
 
     <TextView
         android:id="@+id/textView_name_actor"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textSize="20sp"
         android:layout_marginTop="10dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@+id/imageView_photoActor"
         app:layout_constraintTop_toBottomOf="@+id/imageView11"
         tools:text="@string/example_actor_title" />
 
     <TextView
         android:id="@+id/textView_job_actor"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"

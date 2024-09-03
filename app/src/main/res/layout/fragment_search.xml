@@ -34,7 +34,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/filter_button"
+        android:background="@drawable/ripple_effect_for_button"
+        android:src="@drawable/filter_button"
         app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
         app:layout_constraintEnd_toEndOf="@+id/imgViewBackgroundSearch"
         app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
@@ -66,31 +67,32 @@
         app:layout_constraintStart_toEndOf="@+id/imgViewSearch"
         app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPhoto"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgViewBackgroundSearch">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewBackgroundSearch"
+        tools:listitem="@layout/film_card_in_search" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_left_right"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/film_card_in_search" />
+    <TextView
+        android:id="@+id/textViewError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:gravity="center_horizontal"
+        android:text="@string/text_error_in_search"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewBackgroundSearch" />
 
-        <TextView
-            android:id="@+id/textViewError"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:padding="@dimen/margin_left_right"
-            android:text="@string/text_error_in_search"
-            android:textSize="16sp"
-            android:visibility="invisible" />
-
-    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

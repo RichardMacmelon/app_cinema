@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/text_button_skip"
+        android:background="@drawable/ripple_effect_for_button"
+        android:src="@drawable/text_button_skip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -26,7 +26,7 @@ interface SearchPremieresMovieApi {
     suspend fun getCollectionsMovies(
         @Query("type") type: String,
         @Query("page") page: Int
-    ) : EntityCollectionsMoviesDto
+    ): EntityCollectionsMoviesDto
 
     @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v2.2/films/{id}")
@@ -38,13 +38,13 @@ interface SearchPremieresMovieApi {
     @GET(value = "/api/v2.2/films/{id}/similars")
     suspend fun getSimilarMovies(
         @Path("id") id: Int?
-    ) : EntitySimilarsFilmsDto
+    ): EntitySimilarsFilmsDto
 
     @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v1/staff")
     suspend fun getActorForMovie(
         @Query("filmId") filmId: Int
-    ) : List<EntityPeopleDto>
+    ): List<EntityPeopleDto>
 
     @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v2.2/films/{id}/images")
@@ -52,24 +52,38 @@ interface SearchPremieresMovieApi {
         @Path("id") id: Int?,
         @Query("type") type: String,
         @Query("page") page: Int
-    ) : EntityPhotoForFilmDto
+    ): EntityPhotoForFilmDto
 
     @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v1/staff/{id}")
     suspend fun getInfoForPerson(
         @Path("id") id: Int?
-    ) : EntityActorInfoDto
+    ): EntityActorInfoDto
 
     @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v2.1/films/search-by-keyword")
     suspend fun getSearchMovie(
         @Query("keyword") keyword: String,
         @Query("page") page: Int
-    ) : EntitySearchMovieDto
+    ): EntitySearchMovieDto
 
     @Headers("X-API-KEY: $API_KEY1")
     @GET(value = "/api/v2.2/films/filters")
-    suspend fun getIdForCountryAndGenre() : EntityIdCountryAndGenresDto
+    suspend fun getIdForCountryAndGenre(): EntityIdCountryAndGenresDto
+
+    @Headers("X-API-KEY: $API_KEY1")
+    @GET(value = "/api/v2.2/films")
+    suspend fun getFilmUsingFilters(
+        @Query("countries") countries: Int,
+        @Query("genres") genres: Int,
+        @Query("order") order: String,
+        @Query("type") type: String,
+        @Query("ratingFrom") ratingFrom: Int,
+        @Query("ratingTo") ratingTo: Int,
+        @Query("yearFrom") yearFrom: Int,
+        @Query("yearTo") yearTo: Int,
+        @Query("page") page: Int
+    ): EntityMoviesForFiltersDto
 
     companion object {
         const val API_KEY1 = "e908af57-9ec8-446c-8ef8-b8943c611b96"

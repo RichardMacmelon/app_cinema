@@ -6,26 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".presentation.tabBar.filmpage.FilmPageFragment">
 
-    <View
-        android:id="@+id/button_back"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="@dimen/margin_left_right"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/img_button_back"
-        app:layout_constraintBottom_toBottomOf="@+id/button_back"
-        app:layout_constraintEnd_toEndOf="@+id/button_back"
-        app:layout_constraintStart_toStartOf="@+id/button_back"
-        app:layout_constraintTop_toTopOf="@+id/button_back" />
-
-    <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/component_2"
@@ -33,111 +15,144 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ripple_effect_for_button"
+        android:src="@drawable/img_button_back"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11">
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageViewFilm_img"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageViewFilmImg"
+                android:layout_width="500dp"
+                android:layout_height="400dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="510dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_for_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageButton
                 android:id="@+id/imageButton_skip"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/button_skip"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/ripple_effect_for_button"
+                android:src="@drawable/image_selector_button_see"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageView2" />
 
             <ImageButton
                 android:id="@+id/imageButton_notes"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginEnd="6dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/button_notes"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton_skip"
-                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+                android:background="@drawable/ripple_effect_for_button"
+                android:src="@drawable/image_selector_button_bookmark"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton_skip" />
 
             <ImageButton
                 android:id="@+id/imageButton_likes"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginEnd="6dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/button_like"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton_notes"
-                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+                android:background="@drawable/ripple_effect_for_button"
+                android:src="@drawable/image_selector"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton_notes" />
+
+            <TextView
+                android:id="@+id/textViewInfoMovie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:gravity="center"
+                android:textColor="#B5B5C9"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/imageButton_skip"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageView2"
+                tools:text="@string/example_title_movie" />
+
 
             <ImageButton
                 android:id="@+id/imageButton_share"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/button_share"
-                app:layout_constraintStart_toEndOf="@+id/imageButton_skip"
-                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
+                android:background="@drawable/ripple_effect_for_button"
+                android:src="@drawable/button_share"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageButton_skip" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/imageButton_more"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_marginStart="6dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/button_more_options"
-                app:layout_constraintStart_toEndOf="@+id/imageButton_share"
-                app:layout_constraintTop_toBottomOf="@+id/textViewInfoMovie" />
-
-            <TextView
-                android:id="@+id/textViewInfoMovie"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="#B5B5C9"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewFilm_img"
-                tools:text="@string/example_title_movie" />
+                android:background="@drawable/ripple_effect_for_button"
+                android:src="@drawable/button_more_options"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageButton_share" />
 
             <ImageView
                 android:id="@+id/imageView_logoUrl"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewFilm_img"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/textViewInfoMovie"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="@+id/imageView2" />
 
             <TextView
                 android:id="@+id/textView_shortDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:padding="@dimen/margin_left_right"
+                android:layout_marginStart="@dimen/margin_left_right"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="@dimen/margin_left_right"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton_skip"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
                 tools:text="@string/short_description_movie_example" />
 
             <TextView
                 android:id="@+id/textView_description"
-                android:layout_width="wrap_content"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:gravity="left"
-                android:padding="@dimen/margin_left_right"
+                android:layout_marginStart="@dimen/margin_left_right"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="@dimen/margin_left_right"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -149,31 +164,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_left_right"
+                android:layout_marginTop="40dp"
                 android:text="@string/the_film_was_shot"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_description" />
 
-
-            <View
+            <ImageButton
                 android:id="@+id/button_view_all_actor"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_description" />
-
-            <ImageView
-                android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/img_button_back"
-                android:backgroundTint="@color/blue"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                android:background="@drawable/ripple_effect_for_button"
                 android:rotation="180"
-                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_actor"
-                app:layout_constraintEnd_toEndOf="@+id/button_view_all_actor"
-                app:layout_constraintStart_toStartOf="@+id/button_view_all_actor"
-                app:layout_constraintTop_toTopOf="@+id/button_view_all_actor" />
+                android:src="@drawable/selectoricon"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_title_actor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView_title_actor"
+                app:tint="@color/blue" />
 
             <TextView
                 android:id="@+id/textView_counter_actor"
@@ -187,9 +195,7 @@
                 app:layout_constraintTop_toTopOf="@+id/button_view_all_actor"
                 tools:text="@string/quantity" />
 
-
             <androidx.recyclerview.widget.RecyclerView
-                tools:listitem="@layout/people_card"
                 android:id="@+id/recyclerView_actor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -199,7 +205,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_title_actor"
-                app:spanCount="4" />
+                app:spanCount="4"
+                tools:listitem="@layout/people_card" />
+
 
             <TextView
                 android:id="@+id/textView_title_job"
@@ -211,25 +219,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recyclerView_actor" />
 
-            <View
+            <ImageButton
                 android:id="@+id/button_view_all_job"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/margin_left_right"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_actor" />
-
-            <ImageView
-                android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/img_button_back"
-                android:backgroundTint="@color/blue"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                android:background="@drawable/ripple_effect_for_button"
                 android:rotation="180"
-                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_job"
-                app:layout_constraintEnd_toEndOf="@+id/button_view_all_job"
-                app:layout_constraintStart_toStartOf="@+id/button_view_all_job"
-                app:layout_constraintTop_toTopOf="@+id/button_view_all_job" />
+                android:src="@drawable/selectoricon"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_title_job"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_actor"
+                app:tint="@color/blue" />
 
             <TextView
                 android:id="@+id/textView_counter_job"
@@ -253,7 +254,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView_title_job"
-                app:spanCount="2" />
+                app:spanCount="2"
+                tools:listitem="@layout/people_card" />
 
             <TextView
                 android:id="@+id/textView_gallery"
@@ -265,25 +267,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_job" />
 
-            <View
+            <ImageButton
                 android:id="@+id/button_view_all_gallery"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/margin_left_right"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_job" />
-
-            <ImageView
-                android:id="@+id/imageViewGallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/img_button_back"
-                android:backgroundTint="@color/blue"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                android:background="@drawable/ripple_effect_for_button"
                 android:rotation="180"
-                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_gallery"
-                app:layout_constraintEnd_toEndOf="@+id/button_view_all_gallery"
-                app:layout_constraintStart_toStartOf="@+id/button_view_all_gallery"
-                app:layout_constraintTop_toTopOf="@+id/button_view_all_gallery" />
+                android:src="@drawable/selectoricon"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_gallery"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_job"
+                app:tint="@color/blue" />
 
             <TextView
                 android:id="@+id/textView_counter_gallery"
@@ -298,7 +293,6 @@
                 tools:text="@string/quantity" />
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:listitem="@layout/photo_card"
                 android:id="@+id/recyclerView_gallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -307,7 +301,8 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView_gallery" />
+                app:layout_constraintTop_toBottomOf="@+id/textView_gallery"
+                tools:listitem="@layout/photo_card" />
 
             <TextView
                 android:id="@+id/textView_other_movie"
@@ -319,25 +314,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView_gallery" />
 
-            <View
+            <ImageButton
                 android:id="@+id/button_view_all_similar_movie"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/margin_left_right"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView_gallery" />
-
-            <ImageView
-                android:id="@+id/imageViewSimilar_movie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/img_button_back"
-                android:backgroundTint="@color/blue"
+                android:layout_marginEnd="@dimen/margin_left_right"
+                android:background="@drawable/ripple_effect_for_button"
                 android:rotation="180"
-                app:layout_constraintBottom_toBottomOf="@+id/button_view_all_similar_movie"
-                app:layout_constraintEnd_toEndOf="@+id/button_view_all_similar_movie"
-                app:layout_constraintStart_toStartOf="@+id/button_view_all_similar_movie"
-                app:layout_constraintTop_toTopOf="@+id/button_view_all_similar_movie" />
+                android:src="@drawable/selectoricon"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_other_movie"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView_gallery"
+                app:tint="@color/blue" />
 
             <TextView
                 android:id="@+id/textView_counter_similar_movie"

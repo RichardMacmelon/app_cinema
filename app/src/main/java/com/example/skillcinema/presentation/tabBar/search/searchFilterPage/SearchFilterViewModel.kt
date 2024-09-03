@@ -6,10 +6,21 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.skillcinema.data.EntityIdCountriesDto
 import com.example.skillcinema.data.EntityIdGenresDto
+import com.example.skillcinema.data.EntityItemsDto
+import com.example.skillcinema.data.EntityItemsMoviesForFiltersDto
+import com.example.skillcinema.data.EntityMoviesForFiltersDto
+import com.example.skillcinema.domain.GetFilmUsingFiltersUseCase
 import com.example.skillcinema.domain.GetIdForCountryAndGenreUseCase
+import com.example.skillcinema.presentation.tabBar.AllMoviePage.MyCollectionsPiginSource
+import com.example.skillcinema.presentation.tabBar.search.searchResultPage.MyResultPagingSource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -19,22 +30,54 @@ import javax.inject.Inject
 
 class SearchFilterViewModel @Inject constructor(
     application: Application,
-    private val getIdForCountryAndGenreUseCase: GetIdForCountryAndGenreUseCase
+    private val getIdForCountryAndGenreUseCase: GetIdForCountryAndGenreUseCase,
+    private val getFilmUsingFiltersUseCase: GetFilmUsingFiltersUseCase
 ) : AndroidViewModel(application) {
 
     private val _rating = MutableSharedFlow<String>()
     val rating = _rating.asSharedFlow()
 
-    private val _idForGenre = MutableStateFlow<List<EntityIdGenresDto>>(emptyList())
-    val idForGenre = _idForGenre.asStateFlow()
+    private val _idAndGenre = MutableStateFlow<List<EntityIdGenresDto>>(emptyList())
+    val idAndGenre = _idAndGenre.asStateFlow()
 
-    private val _idForCountry = MutableStateFlow<List<EntityIdCountriesDto>>(emptyList())
-    val idForCountry = _idForCountry.asStateFlow()
+    private val _idAndCountry = MutableStateFlow<List<EntityIdCountriesDto>>(emptyList())
+    val idAndCountry = _idAndCountry.asStateFlow()
 
-    var country: String = "USA"
-    var idCountry: Int = 1
+    var country: String = ""
     var genre: String = ""
     var year: String = ""
+
+    private var idCountry: Int = 0
+    private var idGenre: Int = 0
+    private var startYear: Int = 0
+    private var endYear: Int = 0
+    private var startRating: Int = 0
+    private var endRating: Int = 10
+    private var radioButtonFilmSerial: String = "ALL"
+    private var radioButtonDataPopularRating: String = "YEAR"
+
+    fun getFilerMovie() :  Flow<PagingData<EntityItemsMoviesForFiltersDto>>{
+         val pagedMovie: Flow<PagingData<EntityItemsMoviesForFiltersDto>> = Pager(
+            config = PagingConfig(pageSize = 10),
+            initialKey = null,
+            pagingSourceFactory = {
+                MyResultPagingSource(
+                    getFilmUsingFiltersUseCase,
+                    idCountry,
+                    idGenre,
+                    radioButtonDataPopularRating,
+                    radioButtonFilmSerial,
+                    startRating,
+                    endRating,
+                    startYear,
+                    endYear
+                )
+            }
+        ).flow.cachedIn(viewModelScope)
+        return pagedMovie
+    }
+
+
 
     fun getRating(firstValue: Int, secondValue: Int) {
         viewModelScope.launch {
@@ -49,6 +92,8 @@ class SearchFilterViewModel @Inject constructor(
             } else {
                 _rating.emit("от $firstValue до $secondValue")
             }
+            startRating = firstValue
+            endRating = secondValue
         }
     }
 
@@ -58,14 +103,22 @@ class SearchFilterViewModel @Inject constructor(
                 getIdForCountryAndGenreUseCase.getIdForCountryAndGenre()
             }.fold(
                 onSuccess = {
-                    _idForGenre.value = it.genres
-                    println(_idForGenre.value)
-                    _idForCountry.value = it.countries
-                    println(_idForCountry.value)
+                    _idAndGenre.value = it.genres
+                    _idAndCountry.value = it.countries
                 },
                 onFailure = { Log.d("SearchFilterViewModel", it.message ?: "") }
             )
         }
+    }
+
+    fun saveCheckedRadioButtonFilmsSerials(radioButtonFilmSerial: String) {
+        this.radioButtonFilmSerial = radioButtonFilmSerial
+        println(this.radioButtonFilmSerial)
+    }
+
+    fun saveCheckedRadioButtonDataPopularRating(radioButtonDataPopularRating: String) {
+        this.radioButtonDataPopularRating = radioButtonDataPopularRating
+        println(this.radioButtonDataPopularRating)
     }
 
     fun saveCountry(country: String, idCountry: Int) {
@@ -73,16 +126,23 @@ class SearchFilterViewModel @Inject constructor(
         this.idCountry = idCountry
     }
 
-    fun saveGenre(genre: String) {
+    fun saveGenre(genre: String, idGenre: Int) {
         this.genre = genre
+        this.idGenre = idGenre
     }
 
     fun saveYear(yearStart: Int, yearEnd: Int) {
         if (yearEnd == yearStart) {
+            startYear = yearStart
+            endYear = yearEnd
             year = "Только $yearEnd"
         } else if (yearEnd > yearStart) {
+            startYear = yearStart
+            endYear = startYear
             year = "C $yearStart по $yearEnd"
         } else {
+            startYear = yearEnd
+            endYear = yearStart
             year = "C $yearEnd по $yearStart"
         }
     }
@@ -92,6 +152,5 @@ class SearchFilterViewModel @Inject constructor(
 
     fun toggleColor() {
         _isBlue.value = !(_isBlue.value ?: false)
-        println(_isBlue.value)
     }
 }

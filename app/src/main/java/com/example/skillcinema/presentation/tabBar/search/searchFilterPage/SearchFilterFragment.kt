@@ -57,14 +57,29 @@ class SearchFilterFragment : Fragment() {
             findNavController().navigate(R.id.action_searchFilterFragment_to_searchFilterYearFragment)
         }
 
-        binding.textViewCountry.text = viewModel.country
+        binding.radioGroupFimsSerials.setOnCheckedChangeListener { _, buttonId ->
+            when(buttonId) {
+                R.id.radio_all -> viewModel.saveCheckedRadioButtonFilmsSerials("ALL")
+                R.id.radio_movies -> viewModel.saveCheckedRadioButtonFilmsSerials("FILM")
+                R.id.radioButtonShowTVSeries -> viewModel.saveCheckedRadioButtonFilmsSerials("TV_SERIES")
+            }
+        }
 
-//        binding.textViewCountry.text = viewModel.country.ifEmpty {
-//            resources.getString(R.string.example_country)
-//        }
+        binding.radioGroupFilmsData.setOnCheckedChangeListener { _, buttonId ->
+            when(buttonId) {
+                R.id.radio_data -> viewModel.saveCheckedRadioButtonDataPopularRating("YEAR")
+                R.id.radio_popular -> viewModel.saveCheckedRadioButtonDataPopularRating("NUM_VOTE")
+                R.id.radioButton_rating -> viewModel.saveCheckedRadioButtonDataPopularRating("RATING")
+            }
+        }
 
+        binding.textViewCountry.text = viewModel.country.ifEmpty {
+            viewModel.saveCountry("CША", 1)
+            viewModel.country
+        }
         binding.textViewGenre.text = viewModel.genre.ifEmpty {
-            resources.getString(R.string.example_genre)
+            viewModel.saveGenre("триллер", 1)
+            viewModel.genre
         }
 
         binding.textViewYear.text = viewModel.year.ifEmpty {
@@ -94,6 +109,10 @@ class SearchFilterFragment : Fragment() {
                 binding.imageView10.background.setTint(resources.getColor(R.color.black))
             }
         })
+
+        binding.buttonResult.setOnClickListener {
+            findNavController().navigate(R.id.action_searchFilterFragment_to_searchResultFragment)
+        }
 
     }
 
