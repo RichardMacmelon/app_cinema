@@ -3,30 +3,23 @@ package com.example.skillcinema.presentation.tabBar.filmpage
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.example.skillcinema.data.EntityFilmDto
-import com.example.skillcinema.data.EntityItemsDto
-import com.example.skillcinema.data.EntityItemsPhotoDto
-import com.example.skillcinema.data.EntityPeopleDto
-import com.example.skillcinema.data.EntityPhotoForFilmDto
-import com.example.skillcinema.data.EntitySimilarsFilmsDto
-import com.example.skillcinema.domain.GetActorForMovieUseCase
-import com.example.skillcinema.domain.GetCollectionsUseCase
-import com.example.skillcinema.domain.GetFilmInfoUseCase
-import com.example.skillcinema.domain.GetPhotoForMovieUseCase
-import com.example.skillcinema.domain.GetSimilarsMovieUseCase
-import com.example.skillcinema.entity.EntityPhotoForFilm
-import com.example.skillcinema.presentation.tabBar.AllMoviePage.MyCollectionsPiginSource
+import com.example.skillcinema.data.dto.EntityFilmDto
+import com.example.skillcinema.data.dto.EntityPeopleDto
+import com.example.skillcinema.data.dto.EntityPhotoForFilmDto
+import com.example.skillcinema.data.dto.EntitySimilarsFilmsDto
+import com.example.skillcinema.data.tables.FilmDB
+import com.example.skillcinema.domain.dbUseCase.DBUseCase
+import com.example.skillcinema.domain.useCase.GetActorForMovieUseCase
+import com.example.skillcinema.domain.useCase.GetCollectionsUseCase
+import com.example.skillcinema.domain.useCase.GetFilmInfoUseCase
+import com.example.skillcinema.domain.useCase.GetPhotoForMovieUseCase
+import com.example.skillcinema.domain.useCase.GetSimilarsMovieUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,7 +27,8 @@ class FilmPageViewModel @Inject constructor(
     private val getFilmInfoUseCase: GetFilmInfoUseCase,
     private val getSimilarsMovieUseCase: GetSimilarsMovieUseCase,
     private val getActorForMovieUseCase: GetActorForMovieUseCase,
-    private val getPhotoForMovieUseCase: GetPhotoForMovieUseCase
+    private val getPhotoForMovieUseCase: GetPhotoForMovieUseCase,
+    private val dbUseCase: DBUseCase
 ) : ViewModel() {
 
     private val _infoMovie = MutableSharedFlow<EntityFilmDto>()
@@ -52,15 +46,98 @@ class FilmPageViewModel @Inject constructor(
     private val _photoMovie = MutableSharedFlow<EntityPhotoForFilmDto>()
     val photoMovie = _photoMovie.asSharedFlow()
 
+    fun insertToCollection(film: FilmDB) {
+        viewModelScope.launch {
+            dbUseCase.insertFilm(film)
+            updateCollectionSize()
+        }
+    }
+
+    fun deleteFilmInCollection(film: FilmDB) {
+        viewModelScope.launch {
+            dbUseCase.deleteFilm(film)
+            updateCollectionSize()
+        }
+    }
+
+    suspend fun checkFilmIntoCollection(film: FilmDB): Boolean {
+        return dbUseCase.checkFilmIntoCollection(film)
+    }
+
+    private fun updateCollectionSize() {
+        viewModelScope.launch {
+            dbUseCase.getListCollectionId().forEach { id ->
+                val size = dbUseCase.countForCollection(id)
+                dbUseCase.updateCollectionSize(id, size)
+            }
+        }
+    }
+
+    suspend fun buttonState(collectionId: Int, film: FilmDB): Boolean {
+        val filmWithNewCollectionId = FilmDB(
+            collectionId = collectionId,
+            filmId = film.filmId,
+            filmName = film.filmName,
+            filmGenre = film.filmGenre,
+            filmPoster = film.filmPoster,
+            filmRating = film.filmRating,
+            filmYear = film.filmYear
+        )
+        return checkFilmIntoCollection(filmWithNewCollectionId)
+    }
+
     fun loadPhotoForMovie(id: Int?) {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
                 getPhotoForMovieUseCase.getPhotoForMovieUseCase(id, "SCREENSHOT", 1)
             }.fold(
-                onSuccess = {_photoMovie.emit(it)},
+                onSuccess = { _photoMovie.emit(it) },
                 onFailure = { Log.d("FilmPageViewModelPhoto", it.message ?: "") }
             )
         }
+    }
+
+    fun processMovieData(movie: EntityFilmDto): MovieUIModel {
+        val coverUrl = movie.coverUrl
+        val logoUrl = movie.logoUrl
+        val posterUrl = movie.posterUrl.toString()
+
+        val ratingKinopoisk = movie.ratingKinopoisk?.toString() ?: ""
+
+        val name = movie.nameRu ?: movie.nameEn ?: ""
+
+        val year = movie.year?.let { "$it," } ?: ""
+
+        val genres = movie.genres.joinToString { it.genre }
+        val countries = "${movie.countries.joinToString { it.country }},"
+
+        val filmLength = if (movie.filmLength == null) {
+            ""
+        } else if (movie.filmLength > 60) {
+            val hours = movie.filmLength / 60
+            val minutes = movie.filmLength % 60
+            "$hours ч $minutes мин,"
+        } else {
+            "${movie.filmLength} мин,"
+        }
+
+        val ratingAgeLimits = movie.ratingAgeLimits?.replace("age", "")?.plus("+") ?: ""
+
+        return MovieUIModel(
+            coverUrl = coverUrl,
+            logoUrl = logoUrl,
+            posterUrl = posterUrl,
+            ratingKinopoisk = ratingKinopoisk,
+            name = name,
+            year = year,
+            genres = genres,
+            countries = countries,
+            filmLength = filmLength,
+            ratingAgeLimits = ratingAgeLimits,
+            shortDescription = movie.shortDescription,
+            description = movie.description,
+            webUrl = movie.webUrl
+        )
     }
 
     fun loadInfoPeople(filmId: Int) {
@@ -71,7 +148,7 @@ class FilmPageViewModel @Inject constructor(
                 onSuccess = {
                     val listActor = emptyList<EntityPeopleDto>().toMutableList()
                     val listWorker = emptyList<EntityPeopleDto>().toMutableList()
-                    for (i in 0 until it.size) {
+                    for (i in it.indices) {
                         if (it[i].professionKey == "ACTOR") {
                             listActor.add(it[i])
                         } else {

@@ -8,6 +8,8 @@
     <string name="text_third_onboarding">Делись \nс друзьями</string>
     <string name="all">Все</string>
     <string name="premieres"><b>Популярные сериалы</b></string>
+    <string name="comics"><b>Комиксы</b></string>
+    <string name="top_250_tv_shows"><b>Топ - 250 телешоу</b></string>
     <string name="top_250"><b>Топ - 250</b></string>
     <string name="popular"><b>Популярное</b></string>
     <string name="vampire"><b>Вампиры</b></string>
@@ -81,6 +83,12 @@
     <string name="result"><b>Результат</b></string>
     <string name="viewed"><b>Просмотрено</b></string>
     <string name="collections"><b>Коллекции</b></string>
-    <string name="create_your_own_collection">Создать свою коллекцию</string>
-
+    <string name="create_your_own_collection"><b>Создать свою коллекцию</b></string>
+    <string name="you_found_it_interesting"><b>Вам было интересно</b></string>
+    <string name="hint_for_profile_dialogue">Придумайте название \nдля вашей \nновой коллекции |</string>
+    <string name="ready">Готово</string>
+    <string name="add_to_collection"><b>Добавить в коллекцию</b></string>
+    <string name="collection_example">Любимое</string>
+    <string name="dialogue_erorr">Введите название коллекции</string>
+    <string name="collection_is_empty">Коллекция \"%1$s\" пуста</string>
 </resources>

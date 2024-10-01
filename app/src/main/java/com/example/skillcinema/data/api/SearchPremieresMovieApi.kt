@@ -1,5 +1,14 @@
-package com.example.skillcinema.data
+package com.example.skillcinema.data.api
 
+import com.example.skillcinema.data.dto.EntityActorInfoDto
+import com.example.skillcinema.data.dto.EntityCollectionsMoviesDto
+import com.example.skillcinema.data.dto.EntityFilmDto
+import com.example.skillcinema.data.dto.EntityIdCountryAndGenresDto
+import com.example.skillcinema.data.dto.EntityMoviesForFiltersDto
+import com.example.skillcinema.data.dto.EntityPeopleDto
+import com.example.skillcinema.data.dto.EntityPhotoForFilmDto
+import com.example.skillcinema.data.dto.EntitySearchMovieDto
+import com.example.skillcinema.data.dto.EntitySimilarsFilmsDto
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -86,8 +95,8 @@ interface SearchPremieresMovieApi {
     ): EntityMoviesForFiltersDto
 
     companion object {
-        const val API_KEY1 = "e908af57-9ec8-446c-8ef8-b8943c611b96"
-        const val API_KEY2 = "624f507c-2e3e-4006-acdf-d7953a504c61"
+//        const val API_KEY1 = "e908af57-9ec8-446c-8ef8-b8943c611b96"
+        const val API_KEY1 = "624f507c-2e3e-4006-acdf-d7953a504c61"
     }
 }
 

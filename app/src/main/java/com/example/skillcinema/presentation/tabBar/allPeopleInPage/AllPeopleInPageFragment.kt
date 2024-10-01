@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.skillcinema.R
-import com.example.skillcinema.data.EntityPeopleDto
+import com.example.skillcinema.data.dto.EntityPeopleDto
 import com.example.skillcinema.databinding.FragmentAllPeopleInPageBinding
 import com.example.skillcinema.presentation.tabBar.filmpage.FilmPageFragment
 import com.example.skillcinema.presentation.tabBar.filmpage.FilmPageFragment.Companion.KEY_ACTOR_TITLE
@@ -33,7 +33,7 @@ class AllPeopleInPageFragment : Fragment() {
     lateinit var allPeopleInPageViewModelFactory: AllPeopleInPageViewModelFactory
     private val viewModel: AllPeopleInPageViewModel by viewModels<AllPeopleInPageViewModel> { allPeopleInPageViewModelFactory }
 
-    private val peopleCardAdapter = MyPeopleCardAdapter{ item -> viewActorPage(item) }
+    private val allPeopleCardForAdapter = MyAllPeopleCardForAdapter { item -> viewActorPage(item) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,17 +51,18 @@ class AllPeopleInPageFragment : Fragment() {
             viewModel.loadInfoPeople(key!!)
         }
 
-        when(arguments?.getInt(KEY_PEOPLE_ALL)) {
+        binding.recyclerView.adapter = allPeopleCardForAdapter
+
+        when (arguments?.getInt(KEY_PEOPLE_ALL)) {
             1 -> {
                 viewModel.actorInfo.onEach {
-                    peopleCardAdapter.setData(it)
-                    binding.recyclerView.adapter = peopleCardAdapter
+                    allPeopleCardForAdapter.setData(it)
                 }.launchIn(viewLifecycleOwner.lifecycleScope)
             }
+
             else -> {
                 viewModel.workerMovieInfo.onEach {
-                    peopleCardAdapter.setData(it)
-                    binding.recyclerView.adapter = peopleCardAdapter
+                    allPeopleCardForAdapter.setData(it)
                 }.launchIn(viewLifecycleOwner.lifecycleScope)
             }
         }
@@ -79,7 +80,10 @@ class AllPeopleInPageFragment : Fragment() {
 
     private fun viewActorPage(item: EntityPeopleDto) {
         val argument = bundleOf(FilmPageFragment.KEY_PEOPLE to item.staffId)
-        findNavController().navigate(R.id.action_allPeopleInPageFragment_to_actorPageFragment2, argument)
+        findNavController().navigate(
+            R.id.action_allPeopleInPageFragment_to_actorPageFragment2,
+            argument
+        )
     }
 
 }

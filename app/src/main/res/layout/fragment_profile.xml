@@ -1,112 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.tabBar.profile.ProfileFragment">
+    tools:context=".presentation.tabBar.profile.profilePage.ProfileFragment">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_left_right"
-        android:layout_marginTop="64dp"
-        android:text="@string/viewed"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
 
-    <ImageButton
-        android:id="@+id/imageButton_all_viewed_films"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="@dimen/margin_left_right"
-        android:background="@drawable/ripple_effect_for_button"
-        android:src="@drawable/button_right"
-        app:layout_constraintBottom_toBottomOf="@+id/textView1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView1" />
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_marginTop="40dp"
+            android:text="@string/viewed"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView_container_viewed_films"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="2dp"
-        android:text="@string/quantity"
-        android:textColor="@color/blue"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButton_all_viewed_films"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton_all_viewed_films"
-        app:layout_constraintTop_toTopOf="@+id/imageButton_all_viewed_films" />
+        <ImageButton
+            android:id="@+id/imageButton_all_viewed_films"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:background="@drawable/ripple_effect_for_button"
+            android:src="@drawable/button_right"
+            app:layout_constraintBottom_toBottomOf="@+id/textView1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView1" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_viewed_films"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_left_right"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/margin_left_right"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView1"
-        tools:listitem="@layout/film_card" />
+        <TextView
+            android:id="@+id/textView_container_viewed_films"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton_all_viewed_films"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton_all_viewed_films"
+            app:layout_constraintTop_toTopOf="@+id/imageButton_all_viewed_films"
+            tools:text="@string/quantity" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_left_right"
-        android:layout_marginTop="36dp"
-        android:text="@string/collections"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView_viewed_films" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_viewed_films"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView1"
+            tools:listitem="@layout/film_card" />
 
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/button_plus"
-        app:layout_constraintBottom_toBottomOf="@+id/button_create_new_collection"
-        app:layout_constraintStart_toStartOf="@+id/button_create_new_collection"
-        app:layout_constraintTop_toTopOf="@+id/button_create_new_collection" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_marginTop="36dp"
+            android:text="@string/collections"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView_viewed_films" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/create_your_own_collection"
-        android:textColor="#272727"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
-        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="30dp"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_height="30dp"
+            android:src="@drawable/button_plus"
+            app:layout_constraintBottom_toBottomOf="@+id/button_create_new_collection"
+            app:layout_constraintStart_toStartOf="@+id/button_create_new_collection"
+            app:layout_constraintTop_toTopOf="@+id/button_create_new_collection" />
 
-    <Button
-        android:id="@+id/button_create_new_collection"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_left_right"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="@dimen/margin_left_right"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/create_your_own_collection"
+            android:textColor="#272727"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+            app:layout_constraintStart_toEndOf="@+id/imageView12"
+            app:layout_constraintTop_toTopOf="@+id/imageView12" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:padding="@dimen/margin_left_right"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create_new_collection"
-        app:spanCount="2"
-        tools:listitem="@layout/collections_card" />
+        <Button
+            android:id="@+id/button_create_new_collection"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPlaylist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_create_new_collection"
+            app:spanCount="2"
+            tools:itemCount="4"
+            tools:listitem="@layout/collections_card" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_marginTop="22dp"
+            android:text="@string/you_found_it_interesting"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewPlaylist" />
+
+        <ImageButton
+            android:id="@+id/imageButton_all_interesting_films"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:background="@drawable/ripple_effect_for_button"
+            android:src="@drawable/button_right"
+            app:layout_constraintBottom_toBottomOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/textView_counter_interesting_films"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:textColor="@color/blue"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton_all_interesting_films"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton_all_interesting_films"
+            app:layout_constraintTop_toTopOf="@+id/imageButton_all_interesting_films"
+            tools:text="@string/quantity" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:id="@+id/recyclerView_interesting_films"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_left_right"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/margin_left_right"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            tools:listitem="@layout/film_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -5,8 +5,7 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.skillcinema.data.EntityItemsDto
-import com.example.skillcinema.data.EntityItemsSimilarsFilmsDto
+import com.example.skillcinema.data.dto.EntityItemsSimilarsFilmsDto
 import com.example.skillcinema.databinding.FilmCardBinding
 import com.example.skillcinema.presentation.tabBar.homepage.MyPremieresViewHolder
 

@@ -3,8 +3,8 @@ package com.example.skillcinema.presentation.tabBar.similarMoviePage
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.skillcinema.data.EntitySimilarsFilmsDto
-import com.example.skillcinema.domain.GetSimilarsMovieUseCase
+import com.example.skillcinema.data.dto.EntitySimilarsFilmsDto
+import com.example.skillcinema.domain.useCase.GetSimilarsMovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow

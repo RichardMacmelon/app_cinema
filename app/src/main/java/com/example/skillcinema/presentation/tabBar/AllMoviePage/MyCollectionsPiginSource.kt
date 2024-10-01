@@ -3,8 +3,14 @@ package com.example.skillcinema.presentation.tabBar.AllMoviePage
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.skillcinema.data.EntityItemsDto
-import com.example.skillcinema.domain.GetCollectionsUseCase
+import com.example.skillcinema.data.dto.EntityItemsDto
+import com.example.skillcinema.domain.useCase.GetCollectionsUseCase
+import com.example.skillcinema.presentation.tabBar.homepage.HomeViewModel
+import com.example.skillcinema.presentation.tabBar.homepage.HomeViewModel.Companion.COMICS_THEME
+import com.example.skillcinema.presentation.tabBar.homepage.HomeViewModel.Companion.TOP_250
+import com.example.skillcinema.presentation.tabBar.homepage.HomeViewModel.Companion.TOP_250_TV_SHOWS
+import com.example.skillcinema.presentation.tabBar.homepage.HomeViewModel.Companion.TOP_POPULAR_ALL
+import com.example.skillcinema.presentation.tabBar.homepage.HomeViewModel.Companion.VAMPIRE_THEME
 import javax.inject.Inject
 
 
@@ -20,7 +26,7 @@ class MyCollectionsPiginSource @Inject constructor(
         return kotlin.runCatching {
             when(key) {
                 1 -> {
-                    getCollectionsUseCase.getTop250Collections(POPULAR_SERIES, page)
+                    getCollectionsUseCase.getTop250Collections(COMICS_THEME, page)
                 }
                 2 -> {
                     getCollectionsUseCase.getTop250Collections(TOP_250, page)
@@ -32,7 +38,7 @@ class MyCollectionsPiginSource @Inject constructor(
                     getCollectionsUseCase.getTop250Collections(VAMPIRE_THEME, page)
                 }
                 else -> {
-                    getCollectionsUseCase.getTop250Collections(FAMILY, page)
+                    getCollectionsUseCase.getTop250Collections(TOP_250_TV_SHOWS, page)
                 }
             }
 
@@ -55,10 +61,5 @@ class MyCollectionsPiginSource @Inject constructor(
 
     companion object {
         private const val FIRST_PAGE = 1
-        private const val POPULAR_SERIES = "POPULAR_SERIES"
-        private const val TOP_250 = "TOP_250_MOVIES"
-        private const val TOP_POPULAR_ALL = "TOP_POPULAR_ALL"
-        private const val VAMPIRE_THEME = "VAMPIRE_THEME"
-        private const val FAMILY = "FAMILY"
     }
 }

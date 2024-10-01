@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
-import com.example.skillcinema.data.EntityItemsDto
+import com.example.skillcinema.data.dto.EntityItemsDto
 import com.example.skillcinema.databinding.FilmCardBinding
 import com.example.skillcinema.presentation.tabBar.homepage.MyPremieresViewHolder
 

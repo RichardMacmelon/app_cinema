@@ -3,17 +3,16 @@ package com.example.skillcinema.presentation.tabBar.homepage
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import com.example.skillcinema.data.EntityFilmDto
-import com.example.skillcinema.data.EntityItemsDto
-import com.example.skillcinema.domain.GetCollectionsUseCase
+import com.example.skillcinema.data.dto.EntityItemsDto
+import com.example.skillcinema.data.tables.CollectionDB
+import com.example.skillcinema.data.tables.FilmDB
+import com.example.skillcinema.domain.dbUseCase.DBUseCase
+import com.example.skillcinema.domain.useCase.GetCollectionsUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -47,7 +46,7 @@ class HomeViewModel @Inject constructor(
     private fun loadPopularSeries() {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
-                getCollectionsUseCase.getTop250Collections(POPULAR_SERIES, PAGE)
+                getCollectionsUseCase.getTop250Collections(COMICS_THEME, PAGE)
             }.fold(
                 onSuccess = {
                     _popularSeries.value = it
@@ -99,7 +98,7 @@ class HomeViewModel @Inject constructor(
     private fun loadCollectionsFamily() {
         viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
-                getCollectionsUseCase.getTop250Collections(FAMILY, PAGE)
+                getCollectionsUseCase.getTop250Collections(TOP_250_TV_SHOWS, PAGE)
             }.fold(
                 onSuccess = {
                     _movieFamilyCollections.value = it
@@ -111,11 +110,11 @@ class HomeViewModel @Inject constructor(
 
     companion object {
         private const val PAGE = 1
-        private const val POPULAR_SERIES = "POPULAR_SERIES"
-        private const val TOP_250 = "TOP_250_MOVIES"
-        private const val TOP_POPULAR_ALL = "TOP_POPULAR_ALL"
-        private const val VAMPIRE_THEME = "VAMPIRE_THEME"
-        private const val FAMILY = "FAMILY"
+        const val COMICS_THEME = "COMICS_THEME"
+        const val TOP_250 = "TOP_250_MOVIES"
+        const val TOP_POPULAR_ALL = "TOP_POPULAR_ALL"
+        const val VAMPIRE_THEME = "VAMPIRE_THEME"
+        const val TOP_250_TV_SHOWS = "TOP_250_TV_SHOWS"
     }
 
 }

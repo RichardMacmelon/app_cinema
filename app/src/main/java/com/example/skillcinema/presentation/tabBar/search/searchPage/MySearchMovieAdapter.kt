@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.skillcinema.data.EntityPeopleDto
-import com.example.skillcinema.data.EntitySearchDataMovieDto
+import com.example.skillcinema.data.dto.EntitySearchDataMovieDto
 import com.example.skillcinema.databinding.FilmCardInSearchBinding
 
 class MySearchMovieAdapter(private val onClick: (EntitySearchDataMovieDto) -> Unit) : RecyclerView.Adapter<MySearchMovieViewHolder>() {
@@ -34,7 +33,12 @@ class MySearchMovieAdapter(private val onClick: (EntitySearchDataMovieDto) -> Un
         with(holder.binding) {
             textViewName.text = item?.nameRu ?: item?.nameEn
             textViewRating.text = if (item?.rating == "null") "-" else item?.rating
-            textViewGenre.text = "${ item?.year} ${item?.genres?.joinToString { it.genre }}"
+            if (item?.year != "null") {
+                textViewGenre.text = "${ item?.year}, ${item?.genres?.joinToString { it.genre }}"
+            } else {
+                textViewGenre.text = item.genres?.joinToString { it.genre }
+            }
+
 
             item?.let {
                 Glide.with(imageViewBackground.context)

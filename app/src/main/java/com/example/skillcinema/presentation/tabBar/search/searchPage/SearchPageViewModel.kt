@@ -3,8 +3,8 @@ package com.example.skillcinema.presentation.tabBar.search.searchPage
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.skillcinema.data.EntitySearchDataMovieDto
-import com.example.skillcinema.domain.GetSearchMovieUseCase
+import com.example.skillcinema.data.dto.EntitySearchDataMovieDto
+import com.example.skillcinema.domain.useCase.GetSearchMovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay

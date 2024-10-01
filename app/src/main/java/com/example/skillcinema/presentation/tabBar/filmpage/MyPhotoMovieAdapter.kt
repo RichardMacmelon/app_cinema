@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.skillcinema.data.EntityItemsPhotoDto
+import com.example.skillcinema.data.dto.EntityItemsPhotoDto
 import com.example.skillcinema.databinding.PhotoCardBinding
 
 class MyPhotoMovieAdapter : RecyclerView.Adapter<MyPhotoMovieViewHolder>() {

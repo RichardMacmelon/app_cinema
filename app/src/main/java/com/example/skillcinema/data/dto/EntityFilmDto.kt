@@ -1,6 +1,6 @@
-package com.example.skillcinema.data
+package com.example.skillcinema.data.dto
 
-import com.example.skillcinema.entity.EntityFilm
+import com.example.skillcinema.entity.entityForApi.EntityFilm
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

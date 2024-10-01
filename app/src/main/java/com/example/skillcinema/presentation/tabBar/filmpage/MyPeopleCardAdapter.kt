@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.skillcinema.data.EntityItemsSimilarsFilmsDto
-import com.example.skillcinema.data.EntityPeopleDto
+import com.example.skillcinema.data.dto.EntityPeopleDto
 import com.example.skillcinema.databinding.PeopleCardBinding
 
 class MyPeopleCardAdapter(private val onClick: (EntityPeopleDto) -> Unit) :
@@ -16,7 +15,6 @@ class MyPeopleCardAdapter(private val onClick: (EntityPeopleDto) -> Unit) :
         this.data = data
         notifyDataSetChanged()
     }
-
 
     override fun getItemCount(): Int = data.size
 
@@ -52,6 +50,5 @@ class MyPeopleCardAdapter(private val onClick: (EntityPeopleDto) -> Unit) :
             }
     }
 }
-
 
 class MyPeopleCardViewHolder(val binding: PeopleCardBinding) : RecyclerView.ViewHolder(binding.root)

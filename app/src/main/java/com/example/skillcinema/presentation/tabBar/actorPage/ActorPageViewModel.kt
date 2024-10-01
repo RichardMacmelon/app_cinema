@@ -3,11 +3,10 @@ package com.example.skillcinema.presentation.tabBar.actorPage
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.skillcinema.data.EntityActorInfoDto
-import com.example.skillcinema.data.EntityFilmographyDto
-import com.example.skillcinema.domain.GetInfoForPersonUseCase
+import com.example.skillcinema.data.dto.EntityActorInfoDto
+import com.example.skillcinema.data.dto.EntityFilmographyDto
+import com.example.skillcinema.domain.useCase.GetInfoForPersonUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

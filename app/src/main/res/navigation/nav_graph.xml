@@ -56,6 +56,9 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
             app:popUpTo="@id/filmPageFragment" />
+        <action
+            android:id="@+id/action_filmPageFragment_to_filmBottomDialogueFragment"
+            app:destination="@id/filmBottomDialogueFragment" />
     </fragment>
     <fragment
         android:id="@+id/allPeopleInPageFragment"
@@ -187,9 +190,18 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.skillcinema.presentation.tabBar.profile.ProfileFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.profile.profilePage.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_allFilmInCollectionFragment"
+            app:destination="@id/allFilmInCollectionFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/profileFragment" />
+    </fragment>
     <action
         android:id="@+id/action_global_filmPageFragment"
         app:destination="@id/filmPageFragment"
@@ -197,6 +209,9 @@
         app:exitAnim="@android:anim/fade_out"
         app:popEnterAnim="@android:anim/fade_in"
         app:popExitAnim="@android:anim/fade_out"/>
+    <action
+        android:id="@+id/action_global_profileDialogueFragment"
+        app:destination="@id/profileDialogueFragment" />
     <fragment
         android:id="@+id/searchFilterCountryFragment"
         android:name="com.example.skillcinema.presentation.tabBar.search.searchFilterCountryPage.SearchFilterCountryFragment"
@@ -217,4 +232,18 @@
         android:name="com.example.skillcinema.presentation.tabBar.search.searchResultPage.SearchResultFragment"
         android:label="fragment_search_result"
         tools:layout="@layout/fragment_search_result" />
+    <fragment
+        android:id="@+id/allFilmInCollectionFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.profile.allFilmInCollectionPage.AllFilmInCollectionFragment"
+        android:label="@layout/fragment_all_film_in_collection" />
+    <dialog
+        android:id="@+id/profileDialogueFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.profile.profileDialogPage.ProfileDialogueFragment"
+        android:label="fragment_profile_dialogue"
+        tools:layout="@layout/fragment_profile_dialogue" />
+    <dialog
+        android:id="@+id/filmBottomDialogueFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.filmpage.filmBottomDialoguePage.FilmBottomDialogueFragment"
+        android:label="fragment_film_bottom_dialogue"
+        tools:layout="@layout/fragment_film_bottom_dialogue" />
 </navigation>

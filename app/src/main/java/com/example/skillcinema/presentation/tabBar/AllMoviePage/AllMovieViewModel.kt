@@ -6,8 +6,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.skillcinema.data.EntityItemsDto
-import com.example.skillcinema.domain.GetCollectionsUseCase
+import com.example.skillcinema.data.dto.EntityItemsDto
+import com.example.skillcinema.domain.useCase.GetCollectionsUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

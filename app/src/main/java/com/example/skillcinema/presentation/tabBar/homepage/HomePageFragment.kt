@@ -11,12 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.example.skillcinema.R
-import com.example.skillcinema.data.EntityItemsDto
-import com.example.skillcinema.databinding.FragmentFilmPageBinding
+import com.example.skillcinema.data.dto.EntityItemsDto
 import com.example.skillcinema.databinding.FragmentHomePageBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -123,7 +123,7 @@ class HomePageFragment : Fragment() {
         when (keyBottom) {
             1 -> {
                 argument.apply {
-                    putString(ARGUMENT_KEY, getString(R.string.premieres))
+                    putString(ARGUMENT_KEY, getString(R.string.comics))
                     putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
                 }
                 findNavController().navigate(
@@ -168,7 +168,7 @@ class HomePageFragment : Fragment() {
 
             5 -> {
                 argument.apply {
-                    putString(ARGUMENT_KEY, getString(R.string.family))
+                    putString(ARGUMENT_KEY, getString(R.string.top_250_tv_shows))
                     putInt(ARGUMENT_DOWNLOAD_KEY, keyBottom)
                 }
                 findNavController().navigate(

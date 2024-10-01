@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SkillCinema">
         <activity
-            android:name=".presentation.onBoarding.StartActivity"
+            android:name=".presentation.StartActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"

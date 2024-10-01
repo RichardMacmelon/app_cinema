@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.skillcinema.data.EntityItemsDto
+import com.example.skillcinema.data.dto.EntityItemsDto
 import com.example.skillcinema.databinding.FilmCardBinding
 
 class MyPremieresAdapter(private val onClick: (EntityItemsDto) -> Unit) :

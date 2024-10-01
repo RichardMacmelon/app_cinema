@@ -1,4 +1,4 @@
-package com.example.skillcinema.entity
+package com.example.skillcinema.entity.entityForApi
 
 interface EntityPhotoForFilm {
     val total : Int

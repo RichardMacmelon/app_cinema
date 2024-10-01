@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.skillcinema.presentation.tabBar.homepage.HomePageFragment
-import com.example.skillcinema.presentation.tabBar.profile.ProfileFragment
+import com.example.skillcinema.presentation.tabBar.profile.profilePage.ProfileFragment
 import com.example.skillcinema.presentation.tabBar.search.searchPage.SearchFragment
 
 class ViewPagerTabBarAdapter(activity: FragmentActivity, private val tabCount: Int) :

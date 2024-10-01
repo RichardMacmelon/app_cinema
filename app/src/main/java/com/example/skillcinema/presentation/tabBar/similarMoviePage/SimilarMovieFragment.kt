@@ -2,25 +2,20 @@ package com.example.skillcinema.presentation.tabBar.similarMoviePage
 
 import android.graphics.Typeface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.core.view.isGone
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.skillcinema.R
-import com.example.skillcinema.data.EntityItemsSimilarsFilmsDto
-import com.example.skillcinema.databinding.FragmentHomePageBinding
+import com.example.skillcinema.data.dto.EntityItemsSimilarsFilmsDto
 import com.example.skillcinema.databinding.FragmentSimilarMovieBinding
 import com.example.skillcinema.presentation.tabBar.filmpage.FilmPageFragment
 import com.example.skillcinema.presentation.tabBar.filmpage.MySimilarMovieAdapter
 import com.example.skillcinema.presentation.tabBar.homepage.HomePageFragment
-import com.example.skillcinema.presentation.tabBar.homepage.HomeViewModel
-import com.example.skillcinema.presentation.tabBar.homepage.MainViewModelFactory
-import com.example.skillcinema.presentation.tabBar.homepage.MyPremieresAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject

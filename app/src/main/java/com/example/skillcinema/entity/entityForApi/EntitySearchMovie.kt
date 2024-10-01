@@ -1,4 +1,4 @@
-package com.example.skillcinema.entity
+package com.example.skillcinema.entity.entityForApi
 
 interface EntitySearchMovie {
     val keyword: String

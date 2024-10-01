@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.skillcinema.R
-import com.example.skillcinema.data.EntityFilmographyDto
+import com.example.skillcinema.data.dto.EntityFilmographyDto
 import com.example.skillcinema.databinding.FragmentFilmographyPageBinding
 import com.example.skillcinema.presentation.tabBar.actorPage.ActorPageFragment.Companion.KEY_ACTOR_NAME
 import com.example.skillcinema.presentation.tabBar.actorPage.ActorPageFragment.Companion.KEY_SEX_ACTOR

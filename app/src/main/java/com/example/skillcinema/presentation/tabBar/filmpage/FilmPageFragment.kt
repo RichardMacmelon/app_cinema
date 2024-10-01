@@ -15,10 +15,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.skillcinema.R
-import com.example.skillcinema.data.EntityItemsSimilarsFilmsDto
-import com.example.skillcinema.data.EntityPeopleDto
+import com.example.skillcinema.data.dto.EntityItemsSimilarsFilmsDto
+import com.example.skillcinema.data.dto.EntityPeopleDto
+import com.example.skillcinema.data.tables.FilmDB
 import com.example.skillcinema.databinding.FragmentFilmPageBinding
-import com.example.skillcinema.entity.EntityPeople
 import com.example.skillcinema.presentation.tabBar.homepage.HomePageFragment.Companion.ARGUMENT_FILM_KEY
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -38,6 +38,8 @@ class FilmPageFragment : Fragment() {
     private val photoMovieAdapter = MyPhotoMovieAdapter()
 
     private lateinit var webUrl: String
+    private lateinit var movieUI: MovieUIModel
+    private lateinit var film: FilmDB
 
     @Inject
     lateinit var filmPageViewModelFactory: FilmPageViewModelFactory
@@ -55,9 +57,10 @@ class FilmPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val movieId: Int? = arguments?.getInt(ARGUMENT_FILM_KEY)
+        movieId!!
 
         arguments?.let {
-            viewModel.loadInfoMovie(movieId!!)
+            viewModel.loadInfoMovie(movieId)
             viewModel.loadSimilarsMovie(movieId)
             viewModel.loadInfoPeople(movieId)
             viewModel.loadPhotoForMovie(movieId)
@@ -67,16 +70,58 @@ class FilmPageFragment : Fragment() {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.imageButtonLikes.setOnClickListener {
-            it.isSelected = !it.isSelected
+        binding.imageButtonLikes.setOnClickListener { button ->
+            button.isSelected = !button.isSelected
+            film = FilmDB(
+                collectionId = 3,
+                filmId = movieId,
+                filmName = movieUI.name,
+                filmGenre = movieUI.genres,
+                filmPoster = movieUI.posterUrl,
+                filmRating = movieUI.ratingKinopoisk,
+                filmYear = movieUI.year
+            )
+            if (button.isSelected) {
+                viewModel.insertToCollection(film)
+            } else {
+                viewModel.deleteFilmInCollection(film)
+            }
         }
 
-        binding.imageButtonNotes.setOnClickListener {
-            it.isSelected = !it.isSelected
+        binding.imageButtonNotes.setOnClickListener { button ->
+            button.isSelected = !button.isSelected
+            film = FilmDB(
+                collectionId = 4,
+                filmId = movieId,
+                filmName = movieUI.name,
+                filmGenre = movieUI.genres,
+                filmPoster = movieUI.posterUrl,
+                filmRating = movieUI.ratingKinopoisk,
+                filmYear = movieUI.year
+            )
+            if (button.isSelected) {
+                viewModel.insertToCollection(film)
+            } else {
+                viewModel.deleteFilmInCollection(film)
+            }
         }
 
-        binding.imageButtonSkip.setOnClickListener {
-            it.isSelected = !it.isSelected
+        binding.imageButtonSee.setOnClickListener { button ->
+            button.isSelected = !button.isSelected
+            film = FilmDB(
+                collectionId = 1,
+                filmId = movieId,
+                filmName = movieUI.name,
+                filmGenre = movieUI.genres,
+                filmPoster = movieUI.posterUrl,
+                filmRating = movieUI.ratingKinopoisk,
+                filmYear = movieUI.year
+            )
+            if (button.isSelected) {
+                viewModel.insertToCollection(film)
+            } else {
+                viewModel.deleteFilmInCollection(film)
+            }
         }
 
         binding.imageButtonShare.setOnClickListener {
@@ -89,10 +134,29 @@ class FilmPageFragment : Fragment() {
             startActivity(shareIntent)
         }
 
+        binding.imageButtonMore.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelable(
+                KEY_BOTTOM_DIALOGUE,
+                MyParcelableFilmClass(
+                    film.filmId,
+                    film.filmName,
+                    film.filmYear,
+                    film.filmGenre,
+                    film.filmPoster,
+                    film.filmRating
+                )
+            )
+            findNavController().navigate(
+                R.id.action_filmPageFragment_to_filmBottomDialogueFragment,
+                bundle
+            )
+        }
+
         binding.buttonViewAllActor.setOnClickListener {
             val argument = Bundle().apply {
                 putString(KEY_ACTOR_TITLE, getString(R.string.the_film_was_shot))
-                putInt(ARGUMENT_FILM_KEY, movieId!!)
+                putInt(ARGUMENT_FILM_KEY, movieId)
                 putInt(KEY_PEOPLE_ALL, 1)
             }
             findNavController().navigate(
@@ -104,7 +168,7 @@ class FilmPageFragment : Fragment() {
         binding.buttonViewAllJob.setOnClickListener {
             val argument = Bundle().apply {
                 putString(KEY_ACTOR_TITLE, getString(R.string.we_were_working_on_the_film))
-                putInt(ARGUMENT_FILM_KEY, movieId!!)
+                putInt(ARGUMENT_FILM_KEY, movieId)
                 putInt(KEY_PEOPLE_ALL, 2)
             }
             findNavController().navigate(
@@ -116,7 +180,7 @@ class FilmPageFragment : Fragment() {
         binding.buttonViewAllGallery.setOnClickListener {
             val argument = Bundle().apply {
                 putString(KEY_ACTOR_TITLE, getString(R.string.gallery))
-                putInt(ARGUMENT_FILM_KEY, movieId!!)
+                putInt(ARGUMENT_FILM_KEY, movieId)
             }
             findNavController().navigate(
                 R.id.action_filmPageFragment_to_galleryPageFragment,
@@ -127,7 +191,7 @@ class FilmPageFragment : Fragment() {
         binding.buttonViewAllSimilarMovie.setOnClickListener {
             val argument = Bundle().apply {
                 putString(KEY_ACTOR_TITLE, getString(R.string.similar_films))
-                putInt(ARGUMENT_FILM_KEY, movieId!!)
+                putInt(ARGUMENT_FILM_KEY, movieId)
             }
             findNavController().navigate(
                 R.id.action_filmPageFragment_to_similarMovieFragment,
@@ -138,9 +202,9 @@ class FilmPageFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.similarsMovie.collect { values ->
                 if (values.total == 0) {
-                    binding.textViewOtherMovie.isGone = true
-                    binding.textViewCounterSimilarMovie.isGone = true
-                    binding.buttonViewAllSimilarMovie.isGone = true
+                    binding.textViewOtherMovie.visibility = View.GONE
+                    binding.textViewCounterSimilarMovie.visibility = View.GONE
+                    binding.buttonViewAllSimilarMovie.visibility = View.GONE
                 } else {
                     binding.textViewCounterSimilarMovie.text = values.total.toString()
                     similarMovieAdapter.setData(values.items)
@@ -152,9 +216,9 @@ class FilmPageFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.photoMovie.collect { values ->
                 if (values.total == 0) {
-                    binding.textViewGallery.isGone = true
-                    binding.textViewCounterGallery.isGone = true
-                    binding.buttonViewAllGallery.isGone = true
+                    binding.textViewGallery.visibility = View.GONE
+                    binding.textViewCounterGallery.visibility = View.GONE
+                    binding.buttonViewAllGallery.visibility = View.GONE
                 } else {
                     binding.textViewCounterGallery.text = values.total.toString()
                     photoMovieAdapter.setData(values.items)
@@ -175,70 +239,54 @@ class FilmPageFragment : Fragment() {
             binding.recyclerViewJob.adapter = workerMovieAdapter
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
-        viewModel.infoMovie.onEach {
-            if (it.coverUrl != null && it.logoUrl != null) {
-                Glide.with(requireActivity()).load(it.coverUrl).into(binding.imageViewFilmImg)
-                Glide.with(requireActivity()).load(it.logoUrl).into(binding.imageViewLogoUrl)
+        viewModel.infoMovie.onEach { movie ->
+            movieUI = viewModel.processMovieData(movie)
+            if (movieUI.coverUrl != null && movieUI.logoUrl != null) {
+                Glide.with(requireActivity()).load(movieUI.coverUrl).into(binding.imageViewFilmImg)
+                Glide.with(requireActivity()).load(movieUI.logoUrl).into(binding.imageViewLogoUrl)
             } else {
-                Glide.with(requireActivity()).load(it.posterUrl).into(binding.imageViewFilmImg)
-            }
-
-            var ratingKinopoisk: String
-            if (it.ratingKinopoisk == null) {
-                ratingKinopoisk = ""
-            } else {
-                ratingKinopoisk = it.ratingKinopoisk.toString()
-            }
-
-            webUrl = it.webUrl.toString()
-
-            val name = it.nameRu ?: it.nameEn ?: ""
-
-            val year: String = if (it.year == null) {
-                ""
-            } else {
-                "${it.year},"
-            }
-
-            val genres = it.genres.joinToString { it.genre }
-            val countries = "${it.countries.joinToString { it.country }},"
-
-            var filmLength: String
-            if (it.filmLength == null) {
-                filmLength = ""
-            } else if (it.filmLength > 60) {
-                val hour = it.filmLength / 60
-                val minutes = it.filmLength % 60
-                filmLength = "$hour ч $minutes мин,"
-            } else {
-                filmLength = "${it.filmLength} мин,"
-            }
-
-            var ratingAgeLimits: String
-            if (it.ratingAgeLimits == null) {
-                filmLength.replace(",", "")
-                ratingAgeLimits = ""
-            } else {
-                ratingAgeLimits = "${it.ratingAgeLimits?.replace("age", "")}+"
+                Glide.with(requireActivity()).load(movieUI.posterUrl).into(binding.imageViewFilmImg)
             }
 
             val infoMovie =
-                "$ratingKinopoisk $name \n$year $genres\n $countries $filmLength $ratingAgeLimits"
+                "${movieUI.ratingKinopoisk} ${movieUI.name}\n${movieUI.year} ${movieUI.genres}\n${movieUI.countries} ${movieUI.filmLength} ${movieUI.ratingAgeLimits}"
             binding.textViewInfoMovie.text = infoMovie
 
-            if (it.shortDescription == null) {
-                binding.textViewShortDescription.isGone = true
+
+            if (movieUI.shortDescription == null) {
+                binding.textViewShortDescription.visibility = View.GONE
             } else {
                 binding.textViewShortDescription.setTypeface(null, Typeface.BOLD)
-                binding.textViewShortDescription.text = it.shortDescription
+                binding.textViewShortDescription.text = movieUI.shortDescription
             }
 
-            if (it.description == null) {
+            if (movieUI.description == null) {
                 binding.textViewTitleActor.marginTop.plus(10)
-                binding.textViewDescription.isGone = true
+                binding.textViewDescription.visibility = View.GONE
             } else {
-                binding.textViewDescription.text = it.description
+                binding.textViewDescription.text = movieUI.description
             }
+
+            webUrl = movieUI.webUrl.toString()
+
+            film = FilmDB(
+                collectionId = 2,
+                filmId = movieId,
+                filmName = movieUI.name,
+                filmGenre = movieUI.genres,
+                filmPoster = movieUI.posterUrl,
+                filmRating = movieUI.ratingKinopoisk,
+                filmYear = movieUI.year
+            )
+
+            if (!viewModel.checkFilmIntoCollection(film)) {
+                viewModel.insertToCollection(film)
+            }
+
+            binding.imageButtonSee.isSelected = viewModel.buttonState(1, film)
+            binding.imageButtonLikes.isSelected = viewModel.buttonState(3, film)
+            binding.imageButtonNotes.isSelected = viewModel.buttonState(4, film)
+
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
@@ -256,5 +304,6 @@ class FilmPageFragment : Fragment() {
         const val KEY_ACTOR_TITLE = "KEY_ACTOR_TITLE"
         const val KEY_PEOPLE_ALL = "KEY_PEOPLE_ALL"
         const val KEY_PEOPLE = "KEY_PEOPLE"
+        const val KEY_BOTTOM_DIALOGUE = "KEY_BOTTOM_DIALOGUE"
     }
 }

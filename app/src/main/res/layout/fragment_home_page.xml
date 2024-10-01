@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_left_right"
             android:layout_marginTop="20dp"
-            android:text="@string/premieres"
+            android:text="@string/comics"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -173,7 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_left_right"
             android:layout_marginTop="20dp"
-            android:text="@string/family"
+            android:text="@string/top_250_tv_shows"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewTopVampire" />

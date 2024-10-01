@@ -2,19 +2,18 @@ package com.example.skillcinema.presentation.tabBar.AllMoviePage
 
 import android.graphics.Typeface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.skillcinema.R
-import com.example.skillcinema.data.EntityItemsDto
+import com.example.skillcinema.data.dto.EntityItemsDto
 import com.example.skillcinema.databinding.FragmentAllMovieInCollectionBinding
 import com.example.skillcinema.presentation.tabBar.homepage.HomePageFragment
-import com.example.skillcinema.presentation.tabBar.homepage.MainViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

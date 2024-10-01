@@ -3,10 +3,9 @@ package com.example.skillcinema.presentation.tabBar.galleryPage
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.skillcinema.data.EntityItemsPhotoDto
-import com.example.skillcinema.domain.GetPhotoForMovieUseCase
+import com.example.skillcinema.data.dto.EntityItemsPhotoDto
+import com.example.skillcinema.domain.useCase.GetPhotoForMovieUseCase
 import javax.inject.Inject
-import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities.Private
 
 class MyGalleryPagePagingSource @Inject constructor(
     private val getPhotoForMovieUseCase: GetPhotoForMovieUseCase,

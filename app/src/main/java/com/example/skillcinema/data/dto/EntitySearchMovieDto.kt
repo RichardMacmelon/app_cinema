@@ -1,8 +1,8 @@
-package com.example.skillcinema.data
+package com.example.skillcinema.data.dto
 
-import com.example.skillcinema.entity.EntitySearchDataMovie
-import com.example.skillcinema.entity.EntitySearchGenresMovie
-import com.example.skillcinema.entity.EntitySearchMovie
+import com.example.skillcinema.entity.entityForApi.EntitySearchDataMovie
+import com.example.skillcinema.entity.entityForApi.EntitySearchGenresMovie
+import com.example.skillcinema.entity.entityForApi.EntitySearchMovie
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

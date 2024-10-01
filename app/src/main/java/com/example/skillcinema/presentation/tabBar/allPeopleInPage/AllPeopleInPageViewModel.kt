@@ -3,8 +3,8 @@ package com.example.skillcinema.presentation.tabBar.allPeopleInPage
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.skillcinema.data.EntityPeopleDto
-import com.example.skillcinema.domain.GetActorForMovieUseCase
+import com.example.skillcinema.data.dto.EntityPeopleDto
+import com.example.skillcinema.domain.useCase.GetActorForMovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -3,8 +3,7 @@ package com.example.skillcinema.presentation.tabBar.filmographyPage
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.skillcinema.data.EntityFilmographyDto
-import com.example.skillcinema.data.EntityItemsDto
+import com.example.skillcinema.data.dto.EntityFilmographyDto
 import com.example.skillcinema.databinding.FilmographyFilmBinding
 
 class MyFilmographyPageAdapter(private val onClick: (EntityFilmographyDto) -> Unit) :

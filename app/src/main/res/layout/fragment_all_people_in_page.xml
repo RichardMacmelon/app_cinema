@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.tabBar.allPeopleInPage.AllPeopleInPageFragment">
 
-
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
@@ -52,10 +51,11 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginEnd="@dimen/margin_left_right"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView11"
-        tools:listitem="@layout/people_card" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/people_card_for_fragment_all_people" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

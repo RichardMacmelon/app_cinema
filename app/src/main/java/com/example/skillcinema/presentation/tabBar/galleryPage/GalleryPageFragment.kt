@@ -1,10 +1,12 @@
 package com.example.skillcinema.presentation.tabBar.galleryPage
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -43,6 +45,10 @@ class GalleryPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.view.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
         binding.titleTextView.let {
             it.text = arguments?.getString(FilmPageFragment.KEY_ACTOR_TITLE)
             it.setTypeface(null, Typeface.BOLD)
@@ -51,62 +57,40 @@ class GalleryPageFragment : Fragment() {
         val movieId = arguments?.getInt(HomePageFragment.ARGUMENT_FILM_KEY)
 
         getPhoto(1, movieId)
+        updateButtonState(1)
 
-        binding.view.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
-        }
-
-        binding.button4.setOnClickListener {
-            buttonVisible(1)
+        binding.button1.setOnClickListener {
+            updateButtonState(1)
             getPhoto(1, movieId)
         }
 
-        binding.button5.setOnClickListener {
-            buttonVisible(2)
+        binding.button2.setOnClickListener {
+            updateButtonState(2)
             getPhoto(2, movieId)
         }
 
-        binding.button6.setOnClickListener {
-            buttonVisible(3)
+        binding.button3.setOnClickListener {
+            updateButtonState(3)
             getPhoto(3, movieId)
         }
 
     }
+    private fun updateButtonState(selectedButtonId: Int) {
+        binding.let {
+            updateButtonStyle(it.button1, selectedButtonId == 1)
+            updateButtonStyle(it.button2, selectedButtonId == 2)
+            updateButtonStyle(it.button3, selectedButtonId == 3)
+        }
+    }
 
-    private fun buttonVisible(id: Int) {
-        when (id) {
-            1 -> {
-                binding.let {
-                    it.button1.visibility = View.VISIBLE
-                    it.button2.visibility = View.INVISIBLE
-                    it.button3.visibility = View.INVISIBLE
-                    it.button4.visibility = View.INVISIBLE
-                    it.button5.visibility = View.VISIBLE
-                    it.button6.visibility = View.VISIBLE
-                }
-            }
+    private fun updateButtonStyle(button: Button, isSelected: Boolean) {
+        if (isSelected) {
+            button.setBackgroundColor(Color.parseColor("#3D3BFF"))
+            button.setTextColor(Color.WHITE)
+        } else {
 
-            2 -> {
-                binding.let {
-                    it.button1.visibility = View.INVISIBLE
-                    it.button3.visibility = View.INVISIBLE
-                    it.button2.visibility = View.VISIBLE
-                    it.button5.visibility = View.INVISIBLE
-                    it.button4.visibility = View.VISIBLE
-                    it.button6.visibility = View.VISIBLE
-                }
-            }
-
-            3 -> {
-                binding.let {
-                    it.button1.visibility = View.INVISIBLE
-                    it.button2.visibility = View.INVISIBLE
-                    it.button3.visibility = View.VISIBLE
-                    it.button6.visibility = View.INVISIBLE
-                    it.button4.visibility = View.VISIBLE
-                    it.button5.visibility = View.VISIBLE
-                }
-            }
+            button.setBackgroundColor(Color.WHITE)
+            button.setTextColor(Color.BLACK)
         }
     }
 
