@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.tabBar.search.searchFilterCountryPage.SearchFilterCountryFragment">
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/country"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/buttonBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/ripple_effect_for_button"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/img_button_back"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
+        app:layout_constraintEnd_toEndOf="@+id/buttonBack"
+        app:layout_constraintStart_toStartOf="@+id/buttonBack"
+        app:layout_constraintTop_toTopOf="@+id/buttonBack" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/component_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgViewBackgroundSearch"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/margin_left_right"
+        android:layout_marginTop="@dimen/margin_left_right"
+        android:layout_marginEnd="@dimen/margin_left_right"
+        android:background="@drawable/search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+    <ImageView
+        android:id="@+id/imgViewSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/search_button"
+        android:backgroundTint="#838390"
+        app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintStart_toStartOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
+
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:background="@android:color/transparent"
+        android:cursorVisible="true"
+        android:hint="@string/hintInFilterSearchFragment"
+        android:imeOptions="actionSearch"
+        android:inputType="text|textWebEditText|textNoSuggestions"
+        android:keyboardNavigationCluster="false"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintEnd_toEndOf="@+id/imgViewBackgroundSearch"
+        app:layout_constraintStart_toEndOf="@+id/imgViewSearch"
+        app:layout_constraintTop_toTopOf="@+id/imgViewBackgroundSearch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgViewBackgroundSearch"
+        tools:listitem="@layout/country_and_genre_sample" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
