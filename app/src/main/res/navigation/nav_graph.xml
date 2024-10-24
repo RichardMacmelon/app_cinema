@@ -59,6 +59,14 @@
         <action
             android:id="@+id/action_filmPageFragment_to_filmBottomDialogueFragment"
             app:destination="@id/filmBottomDialogueFragment" />
+        <action
+            android:id="@+id/action_filmPageFragment_to_viewPagerPhotoFragment"
+            app:destination="@id/fragmentPhotoPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/filmPageFragment"/>
     </fragment>
     <fragment
         android:id="@+id/allPeopleInPageFragment"
@@ -79,7 +87,16 @@
         android:id="@+id/galleryPageFragment"
         android:name="com.example.skillcinema.presentation.tabBar.galleryPage.GalleryPageFragment"
         android:label="fragment_gallery_page"
-        tools:layout="@layout/fragment_gallery_page" />
+        tools:layout="@layout/fragment_gallery_page" >
+        <action
+            android:id="@+id/action_galleryPageFragment_to_viewPagerPhotoFragment"
+            app:destination="@id/fragmentPhotoPageFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/galleryPageFragment"/>
+    </fragment>
     <fragment
         android:id="@+id/similarMovieFragment"
         android:name="com.example.skillcinema.presentation.tabBar.similarMoviePage.SimilarMovieFragment"
@@ -246,4 +263,9 @@
         android:name="com.example.skillcinema.presentation.tabBar.filmpage.filmBottomDialoguePage.FilmBottomDialogueFragment"
         android:label="fragment_film_bottom_dialogue"
         tools:layout="@layout/fragment_film_bottom_dialogue" />
+    <fragment
+        android:id="@+id/fragmentPhotoPageFragment"
+        android:name="com.example.skillcinema.presentation.tabBar.photoPage.PhotoPageFragment"
+        android:label="fragment_photo_page_fragment"
+        tools:layout="@layout/fragment_photo_page" />
 </navigation>

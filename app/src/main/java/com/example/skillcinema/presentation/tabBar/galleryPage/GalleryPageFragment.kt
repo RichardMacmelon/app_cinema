@@ -10,8 +10,11 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.skillcinema.R
+import com.example.skillcinema.data.dto.EntityItemsPhotoDto
 import com.example.skillcinema.databinding.FragmentGalleryPageBinding
 import com.example.skillcinema.presentation.tabBar.filmpage.FilmPageFragment
 import com.example.skillcinema.presentation.tabBar.filmpage.MyPhotoMovieAdapter
@@ -27,8 +30,9 @@ class GalleryPageFragment : Fragment() {
 
     private var _binding: FragmentGalleryPageBinding? = null
     private val binding get() = _binding!!
-
-    private val photoAdapter = MyGalleryPagePagingAdapter()
+    private val photoAdapter = MyGalleryPagePagingAdapter { position -> viewBigPhoto(position) }
+    private var movieId: Int = 0
+    private var key: Int = 1
 
     @Inject
     lateinit var galleryPageViewModelFactory: GalleryPageViewModelFactory
@@ -54,24 +58,27 @@ class GalleryPageFragment : Fragment() {
             it.setTypeface(null, Typeface.BOLD)
         }
 
-        val movieId = arguments?.getInt(HomePageFragment.ARGUMENT_FILM_KEY)
+        movieId = arguments?.getInt(HomePageFragment.ARGUMENT_FILM_KEY)!!
 
         getPhoto(1, movieId)
         updateButtonState(1)
 
         binding.button1.setOnClickListener {
-            updateButtonState(1)
-            getPhoto(1, movieId)
+            key = 1
+            updateButtonState(key)
+            getPhoto(key, movieId)
         }
 
         binding.button2.setOnClickListener {
-            updateButtonState(2)
-            getPhoto(2, movieId)
+            key = 2
+            updateButtonState(key)
+            getPhoto(key, movieId)
         }
 
         binding.button3.setOnClickListener {
-            updateButtonState(3)
-            getPhoto(3, movieId)
+            key = 3
+            updateButtonState(key)
+            getPhoto(key, movieId)
         }
 
     }
@@ -99,5 +106,19 @@ class GalleryPageFragment : Fragment() {
             binding.recyclerViewPhoto.adapter = photoAdapter
             photoAdapter.submitData(it)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun viewBigPhoto(position: Int) {
+        println("kekStart $position $movieId $key")
+        val argument = Bundle().apply {
+            putInt(FilmPageFragment.KEY_POSITION, position)
+            putInt(HomePageFragment.ARGUMENT_FILM_KEY, movieId)
+            putInt(FilmPageFragment.KEY_PEOPLE_ALL, key)
+            println("kek $position $movieId $key")
+        }
+        findNavController().navigate(
+            R.id.action_galleryPageFragment_to_viewPagerPhotoFragment,
+            argument
+        )
     }
 }

@@ -26,7 +26,7 @@ class OnboardingFragment2 : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         binding.textViewSkip.setOnClickListener {
-            viewPager?.currentItem = 4
+            viewPager?.currentItem = 3
         }
 
         return binding.root

@@ -1,6 +1,7 @@
 package com.example.skillcinema.presentation.tabBar.homepage
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -11,9 +12,11 @@ class MyPremieresAdapter(private val onClick: (EntityItemsDto) -> Unit) :
     RecyclerView.Adapter<MyPremieresViewHolder>() {
 
     private var data: List<EntityItemsDto> = emptyList()
+    private var filmCardState: List<Boolean> = emptyList()
 
-    fun setData(data: List<EntityItemsDto>) {
+    fun setData(data: List<EntityItemsDto>, filmCardState: List<Boolean>) {
         this.data = data
+        this.filmCardState = filmCardState
         notifyDataSetChanged()
     }
 
@@ -31,9 +34,19 @@ class MyPremieresAdapter(private val onClick: (EntityItemsDto) -> Unit) :
 
     override fun onBindViewHolder(holder: MyPremieresViewHolder, position: Int) {
         val item = data.getOrNull(position)
+        val gradient = filmCardState.getOrNull(position)
         with(holder.binding) {
             textViewName.text = item?.nameRu
             textViewGenre.text = item?.genres?.joinToString { it.genre }
+
+            if (gradient == true) {
+                imageViewGradient.visibility = View.VISIBLE
+                imageViewEye.visibility = View.VISIBLE
+            } else {
+                imageViewGradient.visibility = View.GONE
+                imageViewEye.visibility = View.GONE
+            }
+
             if (item?.ratingKinopoisk != null) {
                 textViewRating.text = item.ratingKinopoisk.toString()
             } else {

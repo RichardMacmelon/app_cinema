@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.skillcinema.data.dto.EntityItemsPhotoDto
+import com.example.skillcinema.data.dto.EntityItemsSimilarsFilmsDto
 import com.example.skillcinema.databinding.PhotoCardBinding
 
-class MyPhotoMovieAdapter : RecyclerView.Adapter<MyPhotoMovieViewHolder>() {
+class MyPhotoMovieAdapter(private val onClick: (position: Int) -> Unit) : RecyclerView.Adapter<MyPhotoMovieViewHolder>() {
 
     private var data: List<EntityItemsPhotoDto> = emptyList()
     fun setData(data: List<EntityItemsPhotoDto>) {
@@ -33,6 +34,9 @@ class MyPhotoMovieAdapter : RecyclerView.Adapter<MyPhotoMovieViewHolder>() {
             item?.let {
                 Glide.with(imageView.context).load(it.previewUrl).centerCrop().into(imageView)
             }
+        }
+        holder.binding.root.setOnClickListener {
+            onClick(position)
         }
     }
 }

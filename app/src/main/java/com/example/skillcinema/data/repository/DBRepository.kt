@@ -26,6 +26,10 @@ class DBRepository @Inject constructor(
         return mainRepository.getDBInfo().getFilmsFlowByCollectionId(collectionId)
     }
 
+    suspend fun getBooleanFromSeeCollection(filmId: Int) : Boolean {
+        return mainRepository.getDBInfo().isFilmInCollection(1, filmId)
+    }
+
     suspend fun getFilmsByCollectionId(collectionId: Int): List<FilmDB> {
         return mainRepository.getDBInfo().getFilmsByCollectionId(collectionId)
     }

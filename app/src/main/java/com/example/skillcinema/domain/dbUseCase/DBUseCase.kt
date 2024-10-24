@@ -27,6 +27,10 @@ class DBUseCase @Inject constructor(
         return dbRepository.getFilmsFlowByCollectionId(collectionId)
     }
 
+    suspend fun getBooleanFromSeeCollection(filmId: Int) : Boolean {
+        return dbRepository.getBooleanFromSeeCollection(filmId)
+    }
+
     suspend fun getFilmsByCollectionId(collectionId: Int): List<FilmDB> {
         return dbRepository.getFilmsByCollectionId(collectionId)
     }

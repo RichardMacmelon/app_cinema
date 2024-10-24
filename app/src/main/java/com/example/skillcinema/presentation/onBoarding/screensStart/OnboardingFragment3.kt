@@ -1,5 +1,6 @@
 package com.example.skillcinema.presentation.onBoarding.screensStart
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -28,7 +29,7 @@ class OnboardingFragment3 : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
 
         binding.textViewSkip.setOnClickListener {
-            viewPager?.currentItem = 4
+            viewPager?.currentItem = 3
         }
 
         return binding.root

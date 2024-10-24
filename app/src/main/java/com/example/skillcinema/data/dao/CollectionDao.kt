@@ -64,6 +64,9 @@ interface CollectionDao {
     @Query("SELECT EXISTS(SELECT 1 FROM collection WHERE collection_id = :collectionId)")
     suspend fun isCollectionExists(collectionId: Int): Boolean
 
+    @Query("SELECT COUNT(*) > 0 FROM film_db WHERE collection_id = :collectionId AND film_id = :filmId")
+    suspend fun isFilmInCollection(collectionId: Int, filmId: Int): Boolean
+
     @Query(
         """
         SELECT EXISTS (

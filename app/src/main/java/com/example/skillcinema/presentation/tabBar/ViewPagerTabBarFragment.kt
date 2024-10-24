@@ -29,8 +29,6 @@ class ViewPagerTabBarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentViewPagerTabBarBinding.inflate(inflater)
-
-
         setUpTabBar()
 
         return binding.root

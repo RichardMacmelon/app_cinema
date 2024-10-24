@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="116dp"
-    android:background="@drawable/ripple_effect"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_effect">
 
     <ImageView
         android:id="@+id/imageView_background"
@@ -15,6 +15,29 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewGradient"
+        android:layout_width="111dp"
+        android:layout_height="156dp"
+        android:background="@drawable/gradient_for_image"
+        android:backgroundTint="@color/blue"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_background"
+        app:layout_constraintStart_toStartOf="@+id/imageView_background"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageViewEye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/button_eye"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_background"
+        app:layout_constraintEnd_toEndOf="@+id/imageView_background"
+        app:tint="@color/white" />
+
 
     <ImageView
         android:id="@+id/imageView_rating_film"
@@ -30,9 +53,9 @@
         android:id="@+id/textView_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
         android:textColor="@color/white"
         android:textSize="11sp"
-        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_rating_film"
         app:layout_constraintEnd_toEndOf="@+id/imageView_rating_film"
         app:layout_constraintStart_toStartOf="@+id/imageView_rating_film"

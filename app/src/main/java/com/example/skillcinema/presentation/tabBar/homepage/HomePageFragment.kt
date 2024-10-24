@@ -25,11 +25,11 @@ class HomePageFragment : Fragment() {
     private var _binding: FragmentHomePageBinding? = null
     private val binding get() = _binding!!
 
-    private val moviePremieresAdapter = MyPremieresAdapter { id ->  onItemClick(id) }
-    private val movieTop250Adapter = MyPremieresAdapter { id ->  onItemClick(id) }
-    private val moviePopularAdapter = MyPremieresAdapter { id ->  onItemClick(id) }
-    private val movieVampireAdapter = MyPremieresAdapter { id ->  onItemClick(id) }
-    private val movieFamilyAdapter = MyPremieresAdapter{ id ->  onItemClick(id) }
+    private val moviePremieresAdapter = MyPremieresAdapter { id -> onItemClick(id) }
+    private val movieTop250Adapter = MyPremieresAdapter { id -> onItemClick(id) }
+    private val moviePopularAdapter = MyPremieresAdapter { id -> onItemClick(id) }
+    private val movieVampireAdapter = MyPremieresAdapter { id -> onItemClick(id) }
+    private val movieFamilyAdapter = MyPremieresAdapter { id -> onItemClick(id) }
 
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
@@ -68,31 +68,38 @@ class HomePageFragment : Fragment() {
             })
 
         viewModel.popularSeries.onEach {
-            moviePremieresAdapter.setData(it)
+            val filmCardState = viewModel.isFilmExistsInCollectionSee(it)
+
+            moviePremieresAdapter.setData(it, filmCardState)
+
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.recyclerView.adapter = contactAdapterPremieres
 
         viewModel.movieTop250Collections.onEach {
-            movieTop250Adapter.setData(it)
+            val filmCardState = viewModel.isFilmExistsInCollectionSee(it)
+            movieTop250Adapter.setData(it, filmCardState)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.recyclerViewTop250.adapter = contactAdapterTop250
 
         viewModel.moviePopularCollections.onEach {
-            moviePopularAdapter.setData(it)
+            val filmCardState = viewModel.isFilmExistsInCollectionSee(it)
+            moviePopularAdapter.setData(it, filmCardState)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.recyclerViewTopPopular.adapter = contactAdapterPopular
 
         viewModel.movieVampireCollections.onEach {
-            movieVampireAdapter.setData(it)
+            val filmCardState = viewModel.isFilmExistsInCollectionSee(it)
+            movieVampireAdapter.setData(it, filmCardState)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.recyclerViewTopVampire.adapter = contactAdapterVampire
 
         viewModel.movieFamilyCollections.onEach {
-            movieFamilyAdapter.setData(it)
+            val filmCardState = viewModel.isFilmExistsInCollectionSee(it)
+            movieFamilyAdapter.setData(it, filmCardState)
         }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         binding.recyclerViewTopFamily.adapter = contactAdapterFamily

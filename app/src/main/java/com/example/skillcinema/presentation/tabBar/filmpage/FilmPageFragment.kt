@@ -15,6 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.skillcinema.R
+import com.example.skillcinema.data.dto.EntityItemsPhotoDto
 import com.example.skillcinema.data.dto.EntityItemsSimilarsFilmsDto
 import com.example.skillcinema.data.dto.EntityPeopleDto
 import com.example.skillcinema.data.tables.FilmDB
@@ -35,7 +36,8 @@ class FilmPageFragment : Fragment() {
     private val similarMovieAdapter = MySimilarMovieAdapter { id -> viewSimilarFilm(id) }
     private val actorMovieAdapter = MyPeopleCardAdapter { item -> viewActorPage(item) }
     private val workerMovieAdapter = MyPeopleCardAdapter { item -> viewActorPage(item) }
-    private val photoMovieAdapter = MyPhotoMovieAdapter()
+    private val photoMovieAdapter = MyPhotoMovieAdapter { position -> viewBigPhoto(position) }
+    private var movieId: Int = 0
 
     private lateinit var webUrl: String
     private lateinit var movieUI: MovieUIModel
@@ -56,15 +58,12 @@ class FilmPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val movieId: Int? = arguments?.getInt(ARGUMENT_FILM_KEY)
-        movieId!!
-
-        arguments?.let {
-            viewModel.loadInfoMovie(movieId)
-            viewModel.loadSimilarsMovie(movieId)
-            viewModel.loadInfoPeople(movieId)
-            viewModel.loadPhotoForMovie(movieId)
-        }
+        movieId = arguments?.getInt(ARGUMENT_FILM_KEY)!!
+        println("movieId = $movieId")
+        viewModel.loadInfoMovie(movieId)
+        viewModel.loadSimilarsMovie(movieId)
+        viewModel.loadInfoPeople(movieId)
+        viewModel.loadPhotoForMovie(movieId)
 
         binding.buttonBack.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -295,6 +294,18 @@ class FilmPageFragment : Fragment() {
         findNavController().navigate(R.id.action_filmPageFragment_self, argument)
     }
 
+    private fun viewBigPhoto(position: Int) {
+        val argument = Bundle().apply {
+            putInt(KEY_POSITION, position)
+            putInt(ARGUMENT_FILM_KEY, movieId)
+            putInt(KEY_PEOPLE_ALL, 1)
+        }
+        findNavController().navigate(
+            R.id.action_filmPageFragment_to_viewPagerPhotoFragment,
+            argument
+        )
+    }
+
     private fun viewActorPage(item: EntityPeopleDto) {
         val argument = bundleOf(KEY_PEOPLE to item.staffId)
         findNavController().navigate(R.id.action_filmPageFragment_to_actorPageFragment, argument)
@@ -305,5 +316,6 @@ class FilmPageFragment : Fragment() {
         const val KEY_PEOPLE_ALL = "KEY_PEOPLE_ALL"
         const val KEY_PEOPLE = "KEY_PEOPLE"
         const val KEY_BOTTOM_DIALOGUE = "KEY_BOTTOM_DIALOGUE"
+        const val KEY_POSITION = "KEY_POSITION"
     }
 }

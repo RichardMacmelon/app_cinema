@@ -95,8 +95,8 @@ interface SearchPremieresMovieApi {
     ): EntityMoviesForFiltersDto
 
     companion object {
-//        const val API_KEY1 = "e908af57-9ec8-446c-8ef8-b8943c611b96"
-        const val API_KEY1 = "624f507c-2e3e-4006-acdf-d7953a504c61"
+        const val API_KEY1 = "e908af57-9ec8-446c-8ef8-b8943c611b96"
+//        const val API_KEY1 = "624f507c-2e3e-4006-acdf-d7953a504c61"
     }
 }
 

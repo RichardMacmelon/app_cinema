@@ -9,7 +9,7 @@ import com.example.skillcinema.data.dto.EntityItemsPhotoDto
 import com.example.skillcinema.databinding.PhotoCardBinding
 import com.example.skillcinema.presentation.tabBar.filmpage.MyPhotoMovieViewHolder
 
-class MyGalleryPagePagingAdapter :
+class MyGalleryPagePagingAdapter(private val onClick: (position: Int) -> Unit) :
     PagingDataAdapter<EntityItemsPhotoDto, MyPhotoMovieViewHolder>(DiffUtilPhotoCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPhotoMovieViewHolder {
@@ -30,6 +30,9 @@ class MyGalleryPagePagingAdapter :
                 .load(item.imageUrl)
                 .centerCrop()
                 .into(holder.binding.imageView)
+        }
+        holder.binding.root.setOnClickListener {
+            onClick(position)
         }
     }
 

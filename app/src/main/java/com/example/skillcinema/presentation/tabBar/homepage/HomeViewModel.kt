@@ -9,6 +9,7 @@ import com.example.skillcinema.data.tables.FilmDB
 import com.example.skillcinema.domain.dbUseCase.DBUseCase
 import com.example.skillcinema.domain.useCase.GetCollectionsUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +18,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    private val getCollectionsUseCase: GetCollectionsUseCase
+    private val getCollectionsUseCase: GetCollectionsUseCase,
+    private val dbUseCase: DBUseCase
 ) : ViewModel() {
 
     private val _popularSeries = MutableStateFlow<List<EntityItemsDto>>(emptyList())
@@ -106,6 +108,16 @@ class HomeViewModel @Inject constructor(
                 onFailure = { Log.d("MovieList viewModel loadCollections", it.message ?: "") }
             )
         }
+    }
+
+    suspend fun isFilmExistsInCollectionSee(listFilms: List<EntityItemsDto>): List<Boolean> {
+        val listBooleanIsFilmExists = mutableListOf<Boolean>()
+
+        listFilms.forEach {
+            listBooleanIsFilmExists.add(dbUseCase.getBooleanFromSeeCollection(it.kinopoiskId))
+        }
+
+        return listBooleanIsFilmExists.take(8)
     }
 
     companion object {
